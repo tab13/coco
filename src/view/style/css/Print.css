@@ -1,0 +1,79 @@
+.block-printreceipt {
+    max-width: 325px;
+    margin: 0 auto;
+    padding: 25px 5px;
+    background-color: #fff;
+    text-align: center;
+    color: #1d1d1d;
+    font-size: 11px;
+    font-family: 'Avenir';
+}
+
+.block-printreceipt p {
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+.block-printreceipt hr {
+    border-color: #cccdcd;
+    border-width: 1px 0 0 ;
+}
+
+.block-printreceipt table {
+    width: 100%;
+    text-align: left;
+    line-height: 20px;
+}
+
+.block-printreceipt table tr td,
+.block-printreceipt table tr th  {
+    vertical-align: text-top;
+    padding: 2px 3px;
+    border: none;
+    line-height: 16px;
+}
+
+.block-printreceipt table tr .t-qty,
+.block-printreceipt table tr .t-price {
+    padding: 2px 6px;
+}
+
+.block-printreceipt .t-name {
+    width: 100%;
+}
+
+.block-printreceipt .t-qty,
+.block-printreceipt .t-price,
+.block-printreceipt .t-total {
+    white-space: nowrap;
+    width: 1%;
+}
+
+.block-printreceipt .t-bundle {
+    padding-left: 10px;
+}
+
+.block-printreceipt i {
+    font-size: 10px;
+}
+
+.block-printreceipt .title {
+    font-size: 25px;
+    display: block;
+}
+
+.block-printreceipt .text-right {
+    text-align: right;
+}
+
+.block-printreceipt .text-center {
+    text-align: center;
+}
+
+.block-printreceipt .text-left {
+    text-align: left;
+}
+
+.block-printreceipt table {
+    font-size: 11px;
+}

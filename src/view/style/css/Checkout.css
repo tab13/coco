@@ -1,0 +1,23 @@
+.checkout-content-right {
+    float: right;
+    width: calc(100% -  380px);
+    width: -moz-calc(100% -  380px);
+    width: -webkit-calc(100% -  380px);
+    width: -o-calc(100% -  380px);
+    display: block;
+    border-left: solid 1px #d5d9dd;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    z-index: 20;
+    -webkit-transition: 0.35s;
+    -o-transition: 0.35s;
+    transition: 0.35s;
+}
+.checkout-content-right.active {
+    right: 0;
+    -webkit-transition: 0.35s;
+    -o-transition: 0.35s;
+    transition: 0.35s;
+}

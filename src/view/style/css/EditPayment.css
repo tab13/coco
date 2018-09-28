@@ -1,0 +1,63 @@
+.wrapper-payment .payment-amount{
+    margin-bottom: 0 !important;
+}
+
+.wrapper-payment .payment-amount-list{
+    margin-top: 17px !important;
+}
+
+/*.wrapper-payment .payment-total{*/
+    /*margin-bottom: 10px !important;*/
+    /*margin-top: 25px !important;*/
+/*}*/
+
+.wrapper-payment .payment-amount .value {
+    border: 0;
+    outline: none;
+    padding: 0;
+}
+
+.wrapper-payment .payment-reference .label {
+    width: 100px !important;
+}
+
+.wrapper-payment .payment-reference .value {
+    border: 0;
+    outline: none;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    line-height: 20px !important;
+    max-width: calc(100% -  100px) !important;
+    max-width: -moz-calc(100% -  100px) !important;
+    max-width: -webkit-calc(100% -  100px) !important;
+    max-width: -o-calc(100% -  100px) !important;
+}
+
+.wrapper-numpad {
+    display: block;
+    max-width: 535px;
+    width: 100%;
+    outline: 0;
+    margin: 0 auto;
+}
+
+.popup-calculator2 .product-field-qty .box-field-qty {
+    padding: 0;
+    text-align: right;
+}
+
+.popup-calculator2 .product-field-qty .form-control {
+    font-size: 36px;
+    color: #1d1d1d;
+    text-align: right;
+    font-weight: normal;
+}
+
+.wrapper-payment .actions-accept .btn {
+    min-width: 145px;
+    font-size: 19px;
+    padding: 0 23px;
+    margin: 0 6px;
+}
+

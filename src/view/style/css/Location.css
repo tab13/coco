@@ -1,0 +1,78 @@
+.selection_location_pos .logout .logout-image {
+    margin-right: 10px;
+}
+.selection_location_pos .logout span {
+    font-size: 15px;
+    color: #3f4245;
+}
+.selection_location_pos .wrapper-login .btn-default.disabled{
+    background-color: #d5d9dd;
+}
+button.btn:focus{
+    outline: 0;
+}
+
+
+.Select .Select-control {
+    height: 54px;
+    border-radius: 0px;
+    border: 1px solid #e0e0e0;
+    border-width: 0 0 1px;
+    display: block;
+    background-color: #fff;
+    padding: 3px 20px;
+    color: #7c7d80;
+    font-size: 15px;
+    line-height: 52px;
+    box-shadow: none !important;
+}
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+    line-height: 52px;
+    background-color: transparent;
+    color: #7c7d80;
+    padding-left: 0px;
+    padding-right: 40px;
+}
+
+.Select-value {
+
+}
+
+.Select-value-label {
+
+}
+
+.Select-arrow-zone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    background-position: right center;
+    background-size: 18px auto;
+    background-image: url(../images/select.svg);
+    background-repeat: no-repeat;
+    display: block;
+    height: 54px;
+}
+
+.Select-arrow-zone  .Select-arrow {
+    display: none;
+}
+
+.wrapper-login .btn-link-logout {
+    margin-top: 0;
+    cursor: pointer;
+}
+.wrapper-login .btn-link-logout:before {
+    font-family: 'icomoon';
+}
+.wrapper-login .btn-link-logout:before {
+    content: "\e90a";
+    color: #6980ec;
+}
+.wrapper-login .btn-link-logout:before {
+    font-size: 20px;
+    margin-right: 9px;
+    vertical-align: middle;
+}

@@ -1,0 +1,37 @@
+.form-group.last .popover {
+    border-radius: 2px;
+    background-color: #d94b4b;
+    position: absolute;
+    color: #fff;
+    font-size: 13px;
+    padding: 5px 10px;
+    line-height: 26px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    margin: 13px 0 0;
+    white-space: nowrap;
+    width: auto;
+    right: 6px;
+    left: auto !important;
+    max-width: none;
+}
+.form-group.last .popover:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 6px 5px;
+    border-color: transparent transparent #d94b4b transparent;
+    position: absolute;
+    right: 8px;
+    top: -6px;
+}
+.form-group.last .popover .popover-content {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+.form-group.last .popover .arrow {
+    display: none;
+}

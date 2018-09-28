@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>more@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="more">
+            <path d="M5.90710678,10.6 L14.7535534,1.75355339 C14.9488155,1.55829124 14.9488155,1.24170876 14.7535534,1.04644661 C14.5582912,0.851184464 14.2417088,0.851184464 14.0464466,1.04644661 L4.84644661,10.2464466 C4.65118446,10.4417088 4.65118446,10.7582912 4.84644661,10.9535534 L14.0464466,20.1535534 C14.2417088,20.3488155 14.5582912,20.3488155 14.7535534,20.1535534 C14.9488155,19.9582912 14.9488155,19.6417088 14.7535534,19.4464466 L5.90710678,10.6 Z" id="shape" fill="#BBBBBE" fill-rule="nonzero" transform="translate(9.800000, 10.600000) scale(1, -1) rotate(90.000000) translate(-9.800000, -10.600000) "></path>
+            <rect id="bounds" transform="translate(10.000000, 10.000000) rotate(90.000000) translate(-10.000000, -10.000000) " x="4.05009359e-13" y="-3.33955086e-13" width="20" height="20"></rect>
+        </g>
+    </g>
+</svg>

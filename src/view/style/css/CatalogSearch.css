@@ -1,0 +1,128 @@
+.catalog-barcode {
+  width: 35px;
+  height: 35px;
+  float: right;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../images/barcode.svg');
+  background-color: transparent;
+}
+.catalog-search {
+  width: calc(100% -  185px);
+  width: -moz-calc(100% -  185px);
+  width: -webkit-calc(100% -  185px);
+  width: -o-calc(100% -  185px);
+  float: left;
+  padding-left: 13px;
+  position: relative;
+}
+.catalog-search .toggle-search {
+  height: 31px;
+  width: 40px;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../images/search-btn.svg');
+  position: absolute;
+  top: 2px;
+  left: 13px;
+  border-left: solid 1px #dfe1e4;
+}
+.catalog-search .toggle-search span {
+  display: none;
+}
+.catalog-search .form-search:before,
+.catalog-search .form-search:after {
+  content: "";
+  display: table;
+}
+.catalog-search .form-search:after {
+  clear: both;
+}
+.catalog-search .form-search.active {
+  width: 100%;
+}
+.catalog-search .form-search.active .input-search {
+  background-color: #f0f0f0;
+  width: 100%;
+  padding-right: 30px;
+  cursor: auto;
+}
+.catalog-search .form-search.active .btn-cannel,
+.catalog-search .form-search.active .btn-remove,
+.catalog-search .form-search.active .btn-search {
+  visibility: visible;
+}
+
+.catalog-search .input-search {
+  display: block;
+  /*width: 83px;*/
+  height: 35px;
+  border-radius: 2px;
+  background-color: transparent;
+  border: none;
+  padding-left: 41px;
+  padding-right: 0;
+  color: #1d1d1d;
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: none;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+   transition: 0.4s;
+  cursor: pointer;
+  caret-color: transparent;
+}
+.catalog-search .form-search.active .input-search {
+  caret-color: #1d1d1d;
+}
+.catalog-search .box-search {
+  display: block;
+  width: calc(100% -  60px);
+  width: -moz-calc(100% -  60px);
+  width: -webkit-calc(100% -  60px);
+  width: -o-calc(100% -  60px);
+  position: relative;
+  float: left;
+}
+.catalog-search .btn-cannel,
+.catalog-search .btn-search,
+.catalog-search .btn-remove {
+  height: 35px;
+  visibility: hidden;
+  background-color: transparent;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+.catalog-search .btn-cannel span,
+.catalog-search .btn-search span,
+.catalog-search .btn-remove span {
+  display: none;
+}
+.catalog-search .btn-cannel {
+  color: #797979;
+  font-weight: 500;
+  width: 50px;
+  float: right;
+}
+.catalog-search .btn-search {
+  width: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url('../images/search.svg');
+}
+.catalog-search .btn-remove {
+  width: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-image: url('../images/clear.svg');
+}

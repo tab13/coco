@@ -1,0 +1,78 @@
+.wrapper-action-left {
+    width: 55px;
+    background-color: #fff;
+    position: fixed;
+    top: 67px;
+    left: 0;
+    height: calc(100% -  67px);
+    height: -moz-calc(100% -  67px);
+    height: -webkit-calc(100% -  67px);
+    height: -o-calc(100% -  67px);
+}
+
+/*
+.wrapper-action-left .multi-order .scrollbar-track-y {
+    width: 0 !important;
+}
+*/
+
+.wrapper-action-left .multi-order {
+    height: calc(100% -  100px);
+    height: -moz-calc(100% -  100px);
+    height: -webkit-calc(100% -  100px);
+    height: -o-calc(100% -  100px);
+}
+.wrapper-action-left .btn {
+    width: calc(100% -  8px);
+    width: -moz-calc(100% -  8px);
+    width: -webkit-calc(100% -  8px);
+    width: -o-calc(100% -  8px);
+    display: block;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-image: url('../images/delete-chekout.svg');
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0 4px 0;
+}
+.wrapper-action-left .btn span {
+    display: none;
+}
+.wrapper-action-left .btn-delete {
+    border-bottom: solid 1px #dfe1e4;
+}
+.wrapper-action-left .btn-add {
+    background-image: url('../images/add.svg');
+}
+.wrapper-action-left .multi-order li {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    color: #4a4a4a;
+    line-height: 1;
+    padding: 0px 4px;
+    cursor: pointer;
+    margin-bottom: -1px;
+}
+.wrapper-action-left .multi-order li.active {
+    background-color: #dce2eb;
+}
+.wrapper-action-left .multi-order li.active .box {
+    border-top-color: #dce2eb;
+}
+.wrapper-action-left .multi-order .box {
+    display: block;
+    border-top: solid 1px #dfe1e4;
+    padding: 9px 0px;
+}
+.wrapper-action-left .multi-order .count {
+    display: block;
+    color: #000000;
+    font-size: 20px;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,274 @@
+.gift-code-scan{
+    height : 32px !important;
+    width : 80% !important;
+    line-height: 2 !important;
+    border : 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none;
+}
+
+.gift-code-scan-box{
+    width: 100%;
+    margin: 9px 0px;
+}
+
+.gift-code-scan-box .btn-accept{
+    width: 20%;
+    max-width: 82px;
+    height: 44px;
+}
+
+.gift-code-scan-box .btn-remove{
+    width: 20px;
+    position: absolute;
+    right: 111px;
+    top: 3px;
+    font-size: 10px;
+    height: 56px;
+    background-color: transparent;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    line-height: 44px;
+    display: block;
+}
+
+.gift-code-scan-box .btn-remove:before {
+    background-color: #dadada;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    content: "\E904";
+    color: #fff;
+    font-family: 'icomoon';
+}
+
+.gift-code-boder {
+    height : 64px !important;
+    line-height: 0 !important;
+    border: solid 1px #d4dce9 !important;
+}
+
+.gift-code-boder:focus-within {
+    border: solid 1px #4c91e2 !important;
+}
+
+.gift-code-applied{
+    height: 60px !important;
+}
+
+.gift-code-applied .remove-code{
+    height: 60px !important;
+}
+
+.gift-code-applied .gift-code .amount{
+    color: #9b9b9b;
+}
+
+.notice-number-giftcode-applied{
+    height: 32px;
+    margin: 0 auto;
+}
+
+.wrapper-payment .payment-full-amount .remove-code {
+    width: 56px;
+    text-align: center;
+    height: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/remove-cash.svg');
+    display: block;
+    float: right;
+    cursor: pointer;
+}
+
+.wrapper-payment .payment-full-amount .gift-code {
+    float: left;
+    width: calc(100%);
+    width: -o-calc(100%);
+    line-height: 32px;
+    padding: 15px 0;
+}
+
+.input-scan {
+    height: 35px !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none;
+}
+.select-box-giftcode{
+    max-width: 535px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.select-box-giftcode .Select .Select-control {
+    height: 57px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.select-box-giftcode .Select-placeholder, .Select--single > .Select-control .Select-value {
+    line-height: 40px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.select-box-giftcode .Select-arrow-zone {
+    left: 0px;
+}
+
+.gift-code-select {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    max-width: 100%;
+    margin: 0 0 15px;
+    border: solid 1px #d4dce9;
+    border-width: 1px 1px 0;
+}
+
+.gift-code-select .Select-placeholder {
+    text-align: left;
+    padding: 7px 12px 40px !important;
+    display: block !important;
+    margin-left: 40px !important;
+}
+
+.Select-multi-value-wrapper .Select-input {
+    display: none !important;
+}
+
+.select-box-giftcode .reload-code {
+    width: 56px;
+    text-align: center;
+    height: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/giftcode/loading.svg');
+    display: block;
+    float: right;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    left: 88%;
+}
+
+.invalid-giftcode {
+    color: #d0021b;
+    font-size: 14px;
+    line-height: 20px;
+    height: 30px;
+}
+.block-applied-code{
+
+}
+
+.block-applied-code-box{
+    max-width: 535px;
+    margin: 0 auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    max-height: calc(100%);
+    max-height: -o-calc(100%);
+}
+
+.block-applied-code-box.show-list{
+    background-color: #fff;
+    border: 1px solid #d4dce9;
+}
+
+.block-applied-code-box .scroll-content{
+    padding: 0;
+}
+
+.wrapper-payment.wrapper-giftcard-form .block-bottom .block-applied-code-box .payment-full-amount {
+    background-color: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-width: 0;
+}
+
+.wrapper-payment.wrapper-giftcard-form .block-bottom .block-applied-code-box .payment-full-amount +  .payment-full-amount {
+    border-top-width: 1px;
+}
+
+/*.wrapper-payment .giftcard-block {
+    height: 100% !important;
+    max-height: 100% !important;
+}
+.wrapper-payment .giftcard-bottom {
+    margin-top: 20%;
+}
+.wrapper-payment .block-content{
+    overflow-y: none !important;
+}*/
+
+.wrapper-giftcard-form .block-content{
+    overflow-y: hidden;
+    padding: 30px 30px 10px 0px;
+}
+
+.wrapper-payment.wrapper-giftcard-form .block-applied-code {
+    height: calc(100% - 126px);
+    height: -o-calc(100% - 126px);
+}
+
+.wrapper-payment.wrapper-giftcard-form .block-bottom {
+    height: calc(100% - 138px);
+}
+
+.wrapper-payment.wrapper-giftcard-form .block-bottom .payment-full-amount {
+    margin-bottom: 0;
+    position: static;
+    line-height: 1 !important;
+}
+
+.wrapper-payment.wrapper-giftcard-form .select-no-box-giftcode {
+    height: 65px;
+}
+
+.wrapper-giftcard-form .Select-menu-outer {
+    margin-top: 5px !important;
+    border-radius: 5px;
+}
+
+.wrapper-giftcard-form .Select-menu-outer div:nth-child(n+2) {
+    border-top: 1px solid #d4dce9;
+}
+
+.loader-couponcode{
+    z-index: 9999;
+}
+
+.wrapper-giftcard-form .Select-menu-outer .Select-option {
+    height: 57px;
+    line-height: 45px;
+    text-align: left;
+    padding-left: 37px;
+}
+
+.wrapper-giftcard-form .Select-menu-outer .Select-option.is-focused {
+    background-color: unset;
+}
+
+.wrapper-giftcard-form .Select-menu-outer .Select-option:hover {
+    background-color: #ebf5ff;
+    background-color: rgba(0, 126, 255, 0.08);
+}
+
+.giftcard-logo {
+    background-image: url("../images/gift-card.svg");
+}

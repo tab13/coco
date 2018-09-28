@@ -1,0 +1,13 @@
+{
+    "Enter To Pos": "Enter To Pos",
+    "Choose a Location": "Choose a Location",
+    "Choose a POS": "Choose a POS",
+    "Logout": "Logout",
+    "Are you sure want to logout": "Are you sure want to logout",
+    "Network Error : You can not logout now because data haven't been synchronized yet": "Network Error : You can not logout now because data haven't been synchronized yet",
+    "Yes": "Yes",
+    "No": "No",
+    "Order #{{id}} has been created successfully!": "Order #{{id}} has been created successfully!",
+    "Cash": "Cash",
+    "Credit Card": "Credit Card"
+}

@@ -1,0 +1,1 @@
+export const NONE_EPIC_TYPE = 'NONE_EPIC_TYPE';

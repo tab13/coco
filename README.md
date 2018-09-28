@@ -1,0 +1,1 @@
+# PWA POS Client version 1.0.1

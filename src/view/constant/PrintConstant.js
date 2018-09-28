@@ -1,0 +1,1 @@
+export const FINISH_PRINT = '[LOGOUT] FINISH_PRINT';

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>[+]@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Tablet-customer-create" transform="translate(-473.000000, -568.000000)" fill="#4A90E2">
+            <g id="Group-11" transform="translate(192.000000, 121.000000)">
+                <g id="[+]" transform="translate(281.000000, 447.000000)">
+                    <g transform="translate(8.000000, 8.000000) rotate(90.000000) translate(-8.000000, -8.000000) translate(0.888889, 0.888889)">
+                        <path d="M7.11111111,14.8888889 C2.81556306,14.8888889 -0.666666667,11.4066592 -0.666666667,7.11111111 C-0.666666667,2.81556306 2.81556306,-0.666666667 7.11111111,-0.666666667 C11.4066592,-0.666666667 14.8888889,2.81556306 14.8888889,7.11111111 C14.8888889,11.4066592 11.4066592,14.8888889 7.11111111,14.8888889 Z M7.11111111,13.5555556 C10.6702795,13.5555556 13.5555556,10.6702795 13.5555556,7.11111111 C13.5555556,3.55194272 10.6702795,0.666666667 7.11111111,0.666666667 C3.55194272,0.666666667 0.666666667,3.55194272 0.666666667,7.11111111 C0.666666667,10.6702795 3.55194272,13.5555556 7.11111111,13.5555556 Z" id="Oval-2" fill-rule="nonzero"></path>
+                        <polygon id="Line-4" fill-rule="nonzero" points="3.77777778 7.77777778 10.4444444 7.77777778 10.4444444 6.44444444 3.77777778 6.44444444"></polygon>
+                        <polygon id="Line-6" fill-rule="nonzero" points="7.77777778 10.4444444 7.77777778 3.77777778 6.44444444 3.77777778 6.44444444 10.4444444"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

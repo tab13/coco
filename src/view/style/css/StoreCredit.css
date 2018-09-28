@@ -1,0 +1,113 @@
+.wrapper-payment .payment-point-discount,
+.wrapper-payment .payment-credits-balance {
+    height: 57px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    line-height: 56px;
+    max-width: 535px;
+    margin: 11px auto 13px;
+    padding: 0 28px 0 17px;
+    cursor: pointer;
+}
+.wrapper-payment .payment-point-discount .label,
+.wrapper-payment .payment-credits-balance .label {
+    display: block;
+    font-size: 15px;
+    color: #4a4a4a;
+    padding: 0;
+    line-height: 56px;
+    font-weight: normal;
+    float: left;
+    width: 90px;
+    text-align: left;
+}
+.wrapper-payment .payment-point-discount .value,
+.wrapper-payment .payment-credits-balance .value {
+    font-size: 18px;
+    float: right;
+    max-width: calc(100% -  90px);
+    max-width: -moz-calc(100% -  90px);
+    max-width: -webkit-calc(100% -  90px);
+    max-width: -o-calc(100% -  90px);
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+}
+.wrapper-payment .payment-point-max {
+    height: 57px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    line-height: 56px;
+    max-width: 535px;
+    margin: 11px auto 13px;
+    padding: 0 28px 0 17px;
+    cursor: pointer;
+}
+.wrapper-payment .payment-point-max .label {
+    display: block;
+    font-size: 15px;
+    color: #4a4a4a;
+    padding: 0;
+    line-height: 56px;
+    font-weight: normal;
+    float: left;
+    width: 90px;
+    text-align: left;
+}
+.wrapper-payment .payment-point-max .value {
+    font-size: 18px;
+    float: right;
+    max-width: calc(100% -  90px);
+    max-width: -moz-calc(100% -  90px);
+    max-width: -webkit-calc(100% -  90px);
+    max-width: -o-calc(100% -  90px);
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+}
+.wrapper-payment .use-points .label {
+    font-size: 18px;
+    color: #4a4a4a;
+    line-height: 32px;
+    padding-top: 21px;
+}
+.wrapper-payment .use-points .label span {
+    font-size: 15px;
+    color: #9b9b9b;
+    display: block;
+}
+.wrapper-payment .payment-amount-credits {
+    margin-top: 11px;
+    margin-bottom: 10px;
+}
+.wrapper-payment .payment-amount-credits .label {
+    font-size: 18px;
+    color: #4a4a4a;
+}
+.wrapper-payment .payment-credits-balance {
+    margin-bottom: 11px;
+}
+.wrapper-refund-order .block-refund-payment .payment-full-amount .img-credit {
+    background-size: 35px auto;
+}
+.wrapper-refund-order .block-refund-payment .payment-full-amount .img-creditcard,
+.wrapper-refund-order .block-refund-payment .payment-full-amount .img-cash {
+    background-size: auto 30px ;
+}
+loader-storecredit {
+    width: 30px;
+    height: 30px;
+    border: 2px solid transparent;
+    border-top-color: #1d63dc;
+    border-bottom-color: #1d63dc;
+    border-radius: 50%;
+    position: relative;
+    animation: loader-rotate 1s linear infinite;
+    margin: 10px auto;
+}

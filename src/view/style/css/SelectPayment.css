@@ -1,0 +1,9 @@
+.image-cashforpos {
+    background-image: url('../images/cash.svg') !important;
+}
+.image-ccforpos {
+    background-image: url('../images/creditcard.svg') !important;
+}
+.image-default {
+    background-image: url('../images/paymenticon.svg');
+}

@@ -1,0 +1,1601 @@
+.wrapper-refund-order {
+    background-color: #f8f8f8;
+    float: right;
+    width: 100%;
+    display: block;
+    border-left: solid 1px #d5d9dd;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding-top: 67px;
+    display: -webkit-flex;
+    display: flex;
+    flex: 1 1 0;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    z-index: 500;
+}
+.wrapper-refund-order .block-title {
+    text-align: center;
+    line-height: 35px;
+    padding: 23px 0 8px;
+    border-bottom: solid 1px #d5d9dd;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+.wrapper-refund-order .block-title .title {
+    font-weight: normal;
+    display: block;
+    padding: 0 80px;
+}
+.wrapper-refund-order .block-title .btn-cannel {
+    color: #797979;
+    font-size: 14px;
+    font-weight: normal;
+    display: block;
+    position: absolute;
+    left: 20px;
+    height: 35px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    z-index: 5;
+}
+.wrapper-refund-order .block-title .price {
+    font-size: 24px;
+    font-weight: normal;
+    float: right;
+    position: absolute;
+    top: 23px;
+    right: 20px;
+}
+.wrapper-refund-order .block-content {
+    height: calc(100% -  79px);
+    height: -moz-calc(100% -  79px);
+    height: -webkit-calc(100% -  79px);
+    height: -o-calc(100% -  79px);
+    text-align: center;
+    padding: 0;
+    overflow-y: auto;
+    background-color: #f8f8f8;
+}
+.wrapper-refund-order .block-bottom {
+    text-align: center;
+    padding: 11px 14px;
+    background-color: #f8f8f8;
+}
+.wrapper-refund-order .block-bottom .btn {
+    min-width: 175px;
+    padding: 0 15px;
+    margin: 0 4px;
+    height: 57px;
+    font-size: 19px;
+}
+.wrapper-refund-order .label-checkbox {
+    position: relative;
+    font-weight: normal;
+    display: block;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"] + span {
+    display: inline-block;
+    width: 51px;
+    height: 31px;
+    border-radius: 31px;
+    background-color: #dadada;
+    position: relative;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    vertical-align: middle;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"] + span:before {
+    content: "";
+    display: block;
+    width: 27px;
+    height: 27px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 100%;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"]:checked + span {
+    background-color: #1d63dc;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"]:checked + span:before {
+    left: 22px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"]:disabled + span {
+    background-color: #f1f1f1;
+    cursor: auto;
+}
+.wrapper-refund-order .label-checkbox input[type="checkbox"]:disabled + span:before {
+    background-color: #d0d0d0;
+}
+.wrapper-refund-order .box-search {
+    display: block;
+    position: relative;
+    float: right;
+    width: 620px;
+}
+.body-touch .wrapper-refund-order .box-search {
+    width: 440px;
+}
+.wrapper-refund-order .box-search .btn-search,
+.wrapper-refund-order .box-search .btn-remove {
+    height: 54px;
+    background-color: transparent;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    z-index: 3;
+    line-height: 54px;
+}
+.wrapper-refund-order .box-search .btn-search span,
+.wrapper-refund-order .box-search .btn-remove span {
+    display: none;
+}
+.wrapper-refund-order .box-search .input-search {
+    display: block;
+    width: 100%;
+    height: 54px;
+    border-radius: 5px;
+    border: solid 1px #dfe1e4;
+    padding-left: 52px;
+    padding-right: 0;
+    color: #1d1d1d;
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 37px;
+    box-shadow: none;
+    position: relative;
+    z-index: 5;
+}
+.wrapper-refund-order .box-search .input-search::-moz-placeholder {
+    color: #797979;
+    opacity: 1;
+}
+.wrapper-refund-order .box-search .input-search:-ms-input-placeholder {
+    color: #797979;
+}
+.wrapper-refund-order .box-search .input-search::-webkit-input-placeholder {
+    color: #797979;
+}
+.wrapper-refund-order .box-search .input-search.active {
+    border: solid 1px #1e67e5;
+}
+.wrapper-refund-order .box-search .btn-search {
+    width: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 20px;
+    z-index: 10;
+}
+.wrapper-refund-order .box-search .btn-search:before {
+    font-family: 'icomoon';
+}
+.wrapper-refund-order .box-search .btn-search:before {
+    content: "\e90f";
+    color: #bbbbbe;
+}
+.wrapper-refund-order .box-search .btn-remove {
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 10px;
+    text-align: center;
+    display: none;
+    z-index: 10;
+}
+.wrapper-refund-order .box-search .btn-remove:before {
+    font-family: 'icomoon';
+}
+.wrapper-refund-order .box-search .btn-remove:before {
+    content: "\e904";
+    color: #fff;
+}
+.wrapper-refund-order .box-search .btn-remove:before {
+    background-color: #dadada;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.wrapper-refund-order .box-search .btn-remove.active{
+    display: block;
+}
+.wrapper-refund-order .block-search {
+    padding: 14px 20px;
+}
+.wrapper-refund-order .block-search:before,
+.wrapper-refund-order .block-search:after {
+    content: "";
+    display: table;
+}
+.wrapper-refund-order .block-search:after {
+    clear: both;
+}
+.wrapper-refund-order .block-search .box-check {
+    float: left;
+    /*padding: 12px 0;*/
+}
+.wrapper-refund-order .block-search .box-check .label-checkbox {
+    margin-bottom: 0;
+}
+.wrapper-refund-order .block-search .label-checkbox input[type="checkbox"] + span {
+    margin-left: 5px;
+}
+.wrapper-refund-order .product-field-qty .box-field-qty {
+    position: relative;
+    border-radius: 5px;
+    padding: 0;
+    width: 170px;
+    border: solid 1px #e6e6e6;
+}
+.wrapper-refund-order .product-field-qty .box-field-qty.active {
+    border: solid 1px #1e67e5;
+}
+.wrapper-refund-order .product-field-qty .form-control {
+    height: 48px;
+    display: block;
+    border-radius: 0;
+    background-color: transparent;
+    font-size: 15px;
+    color: #1d63dc;
+    text-align: center;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    padding: 0 50px;
+    line-height: 48px;
+    cursor: pointer;
+}
+.wrapper-refund-order .product-field-qty .btn-number {
+    position: absolute;
+    top: 0px;
+    line-height: 48px;
+    text-align: center;
+    color: #1d1d1d;
+    display: block;
+    width: 48px;
+    z-index: 5;
+}
+.wrapper-refund-order .product-field-qty .btn-number:before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 38px;
+    position: absolute;
+    top: 6px;
+    background-color: #dfe1e4;
+}
+.wrapper-refund-order .product-field-qty .btn-number.disabled {
+    background-color: #f4f4f4;
+    color: #9b9b9b;
+}
+.wrapper-refund-order .product-field-qty .qtyminus {
+    left: 0;
+    border-radius: 5px 0 0 5px;
+}
+.wrapper-refund-order .product-field-qty .qtyminus:before {
+    right: 0;
+}
+.wrapper-refund-order .product-field-qty .qtyplus {
+    right: 0;
+    border-radius: 0 5px 5px 0;
+}
+.wrapper-refund-order .product-field-qty .qtyplus:before {
+    left: 0;
+}
+.wrapper-refund-order .table-order {
+    line-height: 22px;
+    margin: 0;
+    background-color: #fff;
+}
+.wrapper-refund-order .table-order p {
+    margin-bottom: 5px;
+}
+.wrapper-refund-order .table-order b {
+    font-weight: 500;
+}
+.wrapper-refund-order .table-order thead tr th,
+.wrapper-refund-order .table-order tbody tr th,
+.wrapper-refund-order .table-order tfoot tr th,
+.wrapper-refund-order .table-order thead tr td,
+.wrapper-refund-order .table-order tbody tr td,
+.wrapper-refund-order .table-order tfoot tr td {
+    text-align: center;
+    white-space: nowrap;
+    padding: 12px 20px;
+    width: 1%;
+}
+.wrapper-refund-order .table-order thead tr .t-product,
+.wrapper-refund-order .table-order tbody tr .t-product,
+.wrapper-refund-order .table-order tfoot tr .t-product {
+    text-align: left;
+    padding-left: 0;
+    width: 100%;
+}
+.wrapper-refund-order .table-order thead tr .t-total,
+.wrapper-refund-order .table-order tbody tr .t-total,
+.wrapper-refund-order .table-order tfoot tr .t-total {
+    text-align: right;
+    padding-right: 0;
+}
+.wrapper-refund-order .table-order thead tr .t-col,
+.wrapper-refund-order .table-order tbody tr .t-col,
+.wrapper-refund-order .table-order tfoot tr .t-col {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+}
+.wrapper-refund-order .table-order thead tr .t-rowtotal,
+.wrapper-refund-order .table-order tbody tr .t-rowtotal,
+.wrapper-refund-order .table-order tfoot tr .t-rowtotal {
+    padding-right: 0;
+}
+.body-touch .wrapper-refund-order .table-order thead tr .t-price,
+.body-touch .wrapper-refund-order .table-order tbody tr .t-price,
+.body-touch .wrapper-refund-order .table-order tfoot tr .t-price,
+.body-touch .wrapper-refund-order .table-order thead tr .t-fpt,
+.body-touch .wrapper-refund-order .table-order tbody tr .t-fpt,
+.body-touch .wrapper-refund-order .table-order tfoot tr .t-fpt,
+.body-touch .wrapper-refund-order .table-order thead tr .t-tax,
+.body-touch .wrapper-refund-order .table-order tbody tr .t-tax,
+.body-touch .wrapper-refund-order .table-order tfoot tr .t-tax,
+.body-touch .wrapper-refund-order .table-order thead tr .t-discount,
+.body-touch .wrapper-refund-order .table-order tbody tr .t-discount,
+.body-touch .wrapper-refund-order .table-order tfoot tr .t-discount {
+    display: none;
+}
+.wrapper-refund-order .table-order thead tr th,
+.wrapper-refund-order .table-order thead tr td {
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: solid 1px #dfe1e4;
+}
+.wrapper-refund-order .table-order thead tr .t-product {
+    white-space: nowrap;
+}
+.wrapper-refund-order .table-order thead tr .t-col {
+    border-bottom: solid 1px #dfe1e4;
+}
+.wrapper-refund-order .table-order tbody tr th,
+.wrapper-refund-order .table-order tbody tr td {
+    font-weight: normal;
+    border-top: solid 1px #dfe1e4;
+}
+.wrapper-refund-order .table-order tbody tr .t-product {
+    white-space: normal;
+    font-size: 14px;
+}
+.wrapper-refund-order .table-order thead .t-return,
+.wrapper-refund-order .table-order tbody .t-return {
+    max-width: 200px;
+    width: 100%;
+}
+.wrapper-refund-order .table-order tbody .t-return {
+    color: #797979;
+}
+.wrapper-refund-order .table-order tbody .t-qty {
+    line-height: 29px;
+}
+.wrapper-refund-order .table-order tbody .t-bundle-product {
+    color: #7f7f7f;
+    padding-top: 0;
+    border-top: none;
+    /*padding-right: 0;*/
+}
+.wrapper-refund-order .table-order tfoot th,
+.wrapper-refund-order .table-order tfoot td {
+    border: none;
+    background-color: #ededed;
+}
+.wrapper-refund-order .table-order tfoot tr {
+    background-color: #ededed;
+}
+.wrapper-refund-order .table-order .t-qtyrefund .t-alert,
+.wrapper-refund-order .table-order .t-return .t-alert{
+    max-width: 200px;
+    white-space: normal;
+    color: #797979;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+.wrapper-refund-order .table-order .title {
+    padding-top: 5px;
+}
+.wrapper-refund-order .table-order .option {
+    color: #797979;
+    overflow: hidden;
+    position: relative;
+    line-height: 20px;
+    max-height: 40px;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+}
+.wrapper-refund-order .table-order .option:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.wrapper-refund-order .table-order .option:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 20px;
+    margin-top: 0.2em;
+    background: #fff;
+}
+.wrapper-refund-order .table-order .t-rowtotal {
+    /*display: none;*/
+}
+.wrapper-refund-order .table-order .t-rowtotal .hidden-desktop {
+    display: none;
+}
+.body-touch .wrapper-refund-order .table-order .t-rowtotal .hidden-desktop {
+    display: block;
+}
+.body-touch .wrapper-refund-order .table-order .t-rowtotal {
+    display: table-cell;
+    text-align: right;
+}
+.body-touch .wrapper-refund-order .table-order .t-rowtotal .hidden-mobile {
+    display: none;
+}
+.wrapper-refund-order .search-suggest {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 5px 5px;
+    background-color: #f4f4f4;
+    border: solid 1px #dfe1e4;
+    z-index: 100;
+    font-size: 14px;
+    color: #797979;
+    padding: 0 25px;
+    margin-top: -1px;
+    max-height: 390px;
+    z-index: 2;
+}
+.wrapper-refund-order .search-suggest .suggest-count {
+    line-height: 40px;
+    border-bottom: solid 1px #dfe1e4;
+    margin-bottom: -1px;
+}
+.wrapper-refund-order .search-suggest .suggest-item {
+    display: block;
+    border-top: solid 1px #dfe1e4;
+    line-height: 22px;
+    padding: 10px 0 8px;
+}
+.wrapper-refund-order .search-suggest .title,
+.wrapper-refund-order .search-suggest .subtitle {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+}
+.wrapper-refund-order .search-suggest .title {
+    color: #1d1d1d;
+}
+.wrapper-refund-order .block-refund-adjustments,
+.wrapper-refund-order .block-refund-totals,
+.wrapper-refund-order .block-refund-point {
+    max-width: 554px;
+    margin: 20px auto;
+}
+.wrapper-refund-order .block-refund-adjustments .box-title,
+.wrapper-refund-order .block-refund-totals .box-title,
+.wrapper-refund-order .block-refund-point .box-title {
+    display: block;
+    border-bottom: solid 1px #dfe1e4;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 30px;
+    padding: 11px 30px;
+    text-transform: capitalize;
+}
+.wrapper-refund-order .block-refund-adjustments {
+    margin-top: 0;
+    padding-top: 20px;
+}
+.wrapper-refund-order .block-refund-adjustments .box {
+    background-color: #ffffff;
+}
+.wrapper-refund-order .block-refund-adjustments .box-content {
+    padding: 10px 30px;
+}
+.wrapper-refund-order .block-refund-adjustments .form-group {
+    margin-bottom: 10px;
+}
+.wrapper-refund-order .block-refund-adjustments .form-group:before,
+.wrapper-refund-order .block-refund-adjustments .form-group:after {
+    content: "";
+    display: table;
+}
+.wrapper-refund-order .block-refund-adjustments .form-group:after {
+    clear: both;
+}
+.wrapper-refund-order .block-refund-adjustments label {
+    display: block;
+    float: left;
+    line-height: 30px;
+    padding: 10px 0;
+    margin: 0;
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: normal;
+    width: calc(100% -  220px);
+    width: -moz-calc(100% -  220px);
+    width: -webkit-calc(100% -  220px);
+    width: -o-calc(100% -  220px);
+    text-align: left;
+}
+.wrapper-refund-order .block-refund-adjustments .label {
+    display: block;
+    width: 30px;
+    text-align: left;
+    line-height: 50px;
+    color: #797979;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 5px 5px 0 0;
+    padding-left: 5px;
+}
+.wrapper-refund-order .block-refund-adjustments .form-control {
+    height: 50px;
+    border-radius: 5px;
+    border: solid 1px #e6e6e6;
+    display: block;
+    width: 100%;
+    padding-right: 30px;
+    text-align: right;
+    box-shadow: none;
+    color: #1d63dc;
+    font-size: 15px;
+    line-height: 50px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.wrapper-refund-order .block-refund-adjustments .control {
+    float: right;
+    width: 200px;
+    position: relative;
+    cursor: pointer;
+}
+.wrapper-refund-order .block-refund-adjustments .cas {
+    clear: both;
+    color: #d0021b;
+    text-align: right;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+.wrapper-refund-order .block-refund-point {
+    margin-top: 0;
+    padding-top: 20px;
+}
+.wrapper-refund-order .block-refund-point .box {
+    background-color: #ffffff;
+}
+.wrapper-refund-order .block-refund-point .box-content {
+    padding: 10px 30px;
+}
+.wrapper-refund-order .block-refund-point .form-group {
+    margin-bottom: 10px;
+}
+.wrapper-refund-order .block-refund-point .form-group:before,
+.wrapper-refund-order .block-refund-point .form-group:after {
+    content: "";
+    display: table;
+}
+.wrapper-refund-order .block-refund-point .form-group:after {
+    clear: both;
+}
+.wrapper-refund-order .block-refund-point label {
+    display: block;
+    float: left;
+    line-height: 30px;
+    padding: 10px 0;
+    margin: 0;
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: normal;
+    width: calc(100% -  220px);
+    width: -moz-calc(100% -  220px);
+    width: -webkit-calc(100% -  220px);
+    width: -o-calc(100% -  220px);
+    text-align: left;
+}
+.wrapper-refund-order .block-refund-point .label {
+    display: block;
+    width: 45px;
+    text-align: left;
+    line-height: 50px;
+    color: #797979;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 5px 5px 0 0;
+    padding-left: 5px;
+}
+.wrapper-refund-order .block-refund-point .form-control {
+    height: 50px;
+    border-radius: 5px;
+    border: solid 1px #e6e6e6;
+    display: block;
+    width: 100%;
+    padding-right: 45px;
+    text-align: right;
+    box-shadow: none;
+    color: #1d63dc;
+    font-size: 15px;
+    line-height: 50px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.wrapper-refund-order .block-refund-point .control {
+    float: right;
+    width: 200px;
+    position: relative;
+    cursor: pointer;
+}
+.wrapper-refund-order .block-refund-point .cas {
+    clear: both;
+    color: #d0021b;
+    text-align: right;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+.wrapper-refund-order .block-refund-totals {
+    background-color: #ffffff;
+}
+.wrapper-refund-order .block-refund-totals .box-content {
+    padding: 20px;
+}
+.wrapper-refund-order .block-refund-totals ul {
+    padding-bottom: 5px;
+}
+.wrapper-refund-order .block-refund-totals li {
+    display: table;
+    line-height: 30px;
+    padding: 5px 0;
+}
+.wrapper-refund-order .block-refund-totals .label {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    color: #1d1d1d;
+    font-size: 14px;
+    padding: 0;
+    font-weight: normal;
+    text-align: left;
+    line-height: 30px;
+}
+.wrapper-refund-order .block-refund-totals .value {
+    display: table-cell;
+    vertical-align: top;
+    width: 1%;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.wrapper-refund-order .block-refund-totals .total-bold {
+    font-weight: 500;
+}
+.wrapper-refund-order .block-refund-totals .total-bold .label {
+    font-weight: 500;
+}
+.wrapper-refund-order .block-refund-totals .total {
+    border-top: solid 1px #dfe1e4;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.wrapper-refund-order .block-refund-totals .total .label {
+    font-weight: 500;
+}
+.wrapper-refund-order .block-refund-totals .total-padding {
+    padding-left: 10px
+}
+.back-refund-order {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    width: 55px;
+    height: 25px;
+    line-height: 25px;
+    float: left;
+    margin-top: 30px;
+    font-size: 18px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.back-refund-order:before {
+    font-family: 'icomoon';
+}
+.back-refund-order:before {
+    content: "\e906";
+    color: #4a90e2;
+}
+.popup-calculator .check-price label {
+    display: block;
+    font-weight: normal;
+    color: #aeaeae;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    padding: 0 20px 20px;
+}
+.popup-calculator .check-price input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+.popup-calculator .check-price input[type="checkbox"] + span {
+    display: block;
+    width: 100%;
+    height: 43px;
+    border-radius: 25px;
+    border: solid 1px #d5d5d5;
+    position: relative;
+}
+.popup-calculator .check-price input[type="checkbox"] + span:before {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 43px;
+    border-radius: 25px;
+    background-color: #0174dc;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    z-index: 3;
+}
+.popup-calculator .check-price input[type="checkbox"] ~ .price,
+.popup-calculator .check-price input[type="checkbox"] ~ .percent {
+    display: block;
+    text-align: center;
+    width: calc(50% -  20px);
+    width: -moz-calc(50% -  20px);
+    width: -webkit-calc(50% -  20px);
+    width: -o-calc(50% -  20px);
+    height: 43px;
+    border-radius: 25px;
+    line-height: 43px;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+.popup-calculator .check-price input[type="checkbox"] ~ .price {
+    left: 20px;
+    color: #fff;
+}
+.popup-calculator .check-price input[type="checkbox"] ~ .percent {
+    right: 20px;
+}
+.popup-calculator .check-price input[type="checkbox"]:checked ~ .price {
+    color: #aeaeae;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+.popup-calculator .check-price input[type="checkbox"]:checked ~ .percent {
+    color: #fff;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+.popup-calculator .check-price input[type="checkbox"]:checked + span:before {
+    left: 50%;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.block-refund-orderpayment {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    padding-top: 35px;
+}
+.block-refund-orderpayment .box {
+    background-color: #fff;
+    padding: 0 20px;
+}
+.block-refund-orderpayment .box-title {
+    line-height: 46px;
+    font-weight: 500;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+.block-refund-orderpayment .box-title:before {
+    content: "";
+    width: 20px;
+    height: 46px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/select.svg');
+    background-size: 12px auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.block-refund-orderpayment .box-title.collapsed:before {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.block-refund-orderpayment li {
+    display: table;
+    line-height: 30px;
+}
+.block-refund-orderpayment ul {
+    border-top: solid 1px #dfe1e4;
+    padding: 10px 0;
+}
+.block-refund-orderpayment .label {
+    padding: 0;
+    font-size: 15px;
+    color: #1d1d1d;
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+}
+.block-refund-orderpayment .label .date{
+    color: #9b9b9b;
+    font-size: 14px;
+    margin-left: 5px;
+}
+.block-refund-orderpayment .label .des{
+    color: #9b9b9b;
+    display: block;
+    line-height: 20px;
+    font-style: italic;
+}
+.block-refund-orderpayment .value {
+    display: table-cell;
+    vertical-align: top;
+    width: 1%;
+    white-space: nowrap;
+}
+.block-refund-orderpayment .status {
+    display: block;
+    color: #1d1d1d;
+    font-size: 13px;
+    line-height: 20px;
+    border-radius: 100px;
+    background-color: #ffc4c4;
+    padding: 0 13px;
+    margin: 5px 0;
+}
+.block-refund-orderpayment .status.paid {
+    background-color: #c2dcf2;
+}
+.block-refund-payment {
+    margin: 17px;
+}
+.block-refund-payment .box {
+    background-color: #fff;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.block-refund-payment .box-title {
+    line-height: 56px;
+    text-align: left;
+}
+.block-refund-payment .box-title:before,
+.block-refund-payment .box-title:after {
+    content: "";
+    display: table;
+}
+.block-refund-payment .box-title:after {
+    clear: both;
+}
+.block-refund-payment .box-title .title {
+    display: block;
+    float: left;
+    font-weight: normal;
+    color: #9b9b9b;
+}
+.block-refund-payment .box-title .price {
+    display: block;
+    float: right;
+    color: #1d1d1d;
+    font-size: 18px;
+}
+.block-refund-payment .payment-full-amount {
+    padding: 13px 0;
+    background-color: #ffffff;
+    border-top: solid 1px #dfe1e4;
+    line-height: 50px;
+    text-align: left;
+}
+.block-refund-payment .payment-full-amount:before,
+.block-refund-payment .payment-full-amount:after {
+    content: "";
+    display: table;
+}
+.block-refund-payment .payment-full-amount:after {
+    clear: both;
+}
+.block-refund-payment .payment-full-amount .info {
+    float: left;
+    width: calc(100% -  32px);
+    width: -moz-calc(100% -  32px);
+    width: -webkit-calc(100% -  32px);
+    width: -o-calc(100% -  32px);
+    cursor: pointer;
+}
+.block-refund-payment .payment-full-amount .img {
+    float: left;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    vertical-align: top;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.block-refund-payment .payment-full-amount .img img {
+    max-width: 100%;
+    max-height: 30px;
+    display: inline;
+    vertical-align: middle;
+    width: auto;
+    display: none;
+}
+.block-refund-payment .payment-full-amount .img-cash {
+    background-image: url('../images/cash.svg');
+}
+.block-refund-payment .payment-full-amount .label {
+    display: block;
+    float: left;
+    margin-left: 20px;
+    color: #1d1d1d;
+    font-size: 15px;
+    padding: 0;
+    font-weight: normal;
+    line-height: 50px;
+    max-width: 290px;
+    width: 290px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+.block-refund-payment .payment-full-amount .value {
+    float: right;
+    height: 50px;
+    border-radius: 5px;
+    border: solid 1px #e6e6e6;
+    color: #1d1d1d;
+    font-size: 20px;
+    padding: 10px;
+    line-height: 30px;
+    width: 200px;
+    text-align: right;
+    box-shadow: none;
+}
+.block-refund-payment .payment-full-amount .value + .reference {
+    margin-top: 13px;
+    clear: both;
+}
+.block-refund-payment .payment-full-amount .reference {
+    font-size: 20px;
+    height: 50px;
+    border-radius: 5px;
+    border: solid 1px #e6e6e6;
+    color: #1d1d1d;
+    font-size: 15px;
+    padding: 10px;
+    line-height: 30px;
+    width: 200px;
+    text-align: right;
+    float: right;
+    box-shadow: none;
+}
+.block-refund-payment .payment-full-amount .reference::-moz-placeholder {
+    color: #9b9b9b;
+    opacity: 1;
+}
+.block-refund-payment .payment-full-amount .reference:-ms-input-placeholder {
+    color: #9b9b9b;
+}
+.block-refund-payment .payment-full-amount .reference::-webkit-input-placeholder {
+    color: #9b9b9b;
+}
+.block-refund-payment .payment-full-amount .remove-cash {
+    width: 20px;
+    text-align: center;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/remove-cash.svg');
+    display: block;
+    float: right;
+    cursor: pointer;
+}
+.block-refund-payment .payment-full-amount .add-cash {
+    width: 21px;
+    text-align: center;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/add.svg');
+    display: block;
+    float: right;
+    cursor: pointer;
+}
+.block-refund-payment .payment-full-amount .validation-text {
+    color: #d0021b;
+    text-align: right;
+    font-size: 14px;
+    line-height: 26px;
+    clear: both;
+}
+.block-refund-payment .add-payment {
+    line-height: 50px;
+    padding: 6px 0;
+}
+.block-refund-payment .add-payment .add-cash {
+    height: 50px;
+    line-height: 50px;
+}
+.block-refund-payment .add-payment .label {
+    margin-left: 0;
+}
+.add-payment-refund {
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    display: -webkit-flex;
+    display: flex;
+    flex: 1 1 0;
+    margin: 0 -5px;
+    padding-bottom: 18px;
+}
+.add-payment-refund .item {
+    display: block;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: solid 1px #e5e5e5;
+    width: calc(25% -  10px);
+    width: -moz-calc(25% -  10px);
+    width: -webkit-calc(25% -  10px);
+    width: -o-calc(25% -  10px);
+    margin: 0 5px 5px;
+    padding: 19px 10px 13px;
+    text-align: center;
+    cursor: pointer;
+}
+.add-payment-refund .title {
+    display: block;
+    line-height: 24px;
+    padding: 4px 0;
+}
+.add-payment-refund .img {
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-bottom: 4px;
+}
+.wrapper-refund-order .payment-total {
+    margin-bottom: 25px;
+    min-width: 210px;
+    max-width: 650px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+}
+.wrapper-refund-order .payment-total li {
+    display: block;
+}
+.wrapper-refund-order .payment-total li:before,
+.wrapper-refund-order .payment-total li:after {
+    content: "";
+    display: table;
+}
+.wrapper-refund-order .payment-total li:after {
+    clear: both;
+}
+.wrapper-refund-order .payment-total .label,
+.wrapper-refund-order .payment-total .value {
+    display: inline-block;
+    font-weight: normal;
+    line-height: 43px;
+    color: #1d1d1d;
+    padding: 0;
+    vertical-align: text-top;
+}
+.wrapper-refund-order .payment-total .label {
+    font-size: 15px;
+    display: block;
+    color: #9b9b9b;
+}
+.wrapper-refund-order .payment-total .value {
+    font-size: 36px;
+    color: #1d1d1d;
+}
+.wrapper-refund-order .payment-logo {
+    padding-top: 30px;
+}
+.wrapper-refund-order .payment-logo .img {
+    display: block;
+    margin-bottom: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 54px;
+    background-image: url('../images/creditcard.svg');
+    background-size: auto 100%;
+}
+.wrapper-refund-order .payment-amount {
+    height: 108px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: solid 1px #d9d9d9;
+    line-height: 106px;
+    max-width: 535px;
+    margin: 30px auto 17px;
+    padding: 0 28px 0 17px;
+    cursor: pointer;
+}
+.wrapper-refund-order .payment-amount .label {
+    display: block;
+    font-size: 15px;
+    color: #797979;
+    padding: 0;
+    line-height: 106px;
+    font-weight: normal;
+    float: left;
+    width: 90px;
+    text-align: left;
+}
+.wrapper-refund-order .payment-amount .value {
+    font-size: 36px;
+    float: right;
+    max-width: calc(100% -  90px);
+    max-width: -moz-calc(100% -  90px);
+    max-width: -webkit-calc(100% -  90px);
+    max-width: -o-calc(100% -  90px);
+    text-align: right;
+}
+.wrapper-refund-order .paypal-by {
+    max-width: 535px;
+    margin: 0 auto 15px;
+}
+.wrapper-refund-order .paypal-by .validation-advice {
+    position: static;
+    bottom: -19px;
+    right: 0;
+    line-height: 16px;
+    font-size: 12px;
+    color: #d0021b;
+}
+.wrapper-refund-order .paypal-by .validation-advice .dropdown-toggle {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-color: #dc3636;
+    cursor: pointer;
+    text-align: center;
+    line-height: 17px;
+    border-radius: 100%;
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+}
+.wrapper-refund-order .paypal-by .validation-advice .dropdown-toggle:before {
+    font-family: 'icomoon';
+}
+.wrapper-refund-order .paypal-by .validation-advice .dropdown-toggle:before {
+    content: "\e911";
+    color: #d0021b;
+}
+.wrapper-refund-order .paypal-by .validation-advice .dropdown-toggle:before {
+    color: #fff;
+    font-size: 10px;
+    font-weight: normal;
+}
+.wrapper-refund-order .paypal-by .validation-advice .popover {
+    border-radius: 2px;
+    background-color: transparent;
+    position: absolute;
+    right: 0 !important;
+    left: auto !important;
+    color: #d0021b;
+    font-size: 14px;
+    padding: 0;
+    line-height: 20px ;
+    box-shadow: none;
+    border: none;
+    white-space: nowrap;
+    margin-top: 19px;
+    width: auto;
+    max-width: none;
+}
+.wrapper-refund-order .paypal-by .validation-advice .popover:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 6px 5px;
+    border-color: transparent transparent #d94b4b transparent;
+    position: absolute;
+    right: 8px;
+    top: -6px;
+    display: none;
+}
+.wrapper-refund-order .paypal-by .validation-advice .popover .popover-content {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+.wrapper-refund-order .paypal-by .validation-advice .popover .arrow {
+    display: none;
+}
+.wrapper-refund-order .paypal-by .tab-pane {
+    background-color: #fff;
+    padding: 20px;
+}
+.wrapper-refund-order .paypal-by label {
+    display: block;
+    font-weight: normal;
+    color: #797979;
+    line-height: 22px;
+    font-size: 14px;
+    padding: 0;
+    margin-bottom: 3px;
+    text-align: left;
+}
+.wrapper-refund-order .paypal-by .form-group {
+    margin-bottom: 22px;
+    position: relative;
+}
+.wrapper-refund-order .paypal-by .form-group.last {
+    margin-bottom: 0;
+}
+.wrapper-refund-order .paypal-by .form-control {
+    display: block;
+    width: 100%;
+    height: 30px;
+    border-radius: 0;
+    background-color: #ffffff;
+    border-width: 0 0 1px;
+    border-bottom: solid 1px #d9d9d9;
+    font-size: 14px;
+    color: #797979;
+    box-shadow: none;
+    text-align: left;
+    line-height: 42px;
+    padding: 0 11px;
+    cursor: pointer;
+    line-height: 22px;
+    padding-top: 1px;
+    padding-bottom: 6px;
+    padding-left: 0;
+}
+.wrapper-refund-order .paypal-by .form-control::-moz-placeholder {
+    color: #797979;
+    opacity: 1;
+}
+.wrapper-refund-order .paypal-by .form-control:-ms-input-placeholder {
+    color: #797979;
+}
+.wrapper-refund-order .paypal-by .form-control::-webkit-input-placeholder {
+    color: #797979;
+}
+.wrapper-refund-order .paypal-by .toggle {
+    display: block;
+    font-weight: normal;
+    padding: 0;
+    margin: 0 auto 16px;
+    width: 300px;
+    height: 39px;
+    border-radius: 25px;
+    border: solid 1px #d5d5d5;
+    position: relative;
+    font-size: 15px;
+    cursor: pointer;
+}
+.wrapper-refund-order .paypal-by .toggle:before {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 39px;
+    border-radius: 25px;
+    background-color: #1e67e5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.wrapper-refund-order .paypal-by .toggle .text-left,
+.wrapper-refund-order .paypal-by .toggle .text-right {
+    display: block;
+    width: 150px;
+    line-height: 39px;
+    height: 39px;
+    color: #aeaeae;
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 25px;
+    position: absolute;
+    top: 0;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    z-index: 6;
+}
+.wrapper-refund-order .paypal-by .toggle .text-left {
+    left: 0;
+}
+.wrapper-refund-order .paypal-by .toggle .text-right {
+    right: 0;
+    color: #fff;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by ~ .by-card {
+    display: none;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by ~ .by-email {
+    display: block;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by:checked + .toggle:before {
+    right: 150px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by:checked + .toggle .text-left {
+    color: #fff;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by:checked + .toggle .text-right {
+    color: #aeaeae;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by:checked ~ .by-card {
+    display: block;
+}
+.wrapper-refund-order .paypal-by input.checkpaypal-by:checked ~ .by-email {
+    display: none;
+}
+.wrapper-refund-order .paypal-by .col-xs-8,
+.wrapper-refund-order .paypal-by .col-xs-2 {
+    padding: 0 4px;
+}
+.wrapper-refund-order .paypal-by .col-xs-2 {
+    width: 108px;
+}
+.wrapper-refund-order .paypal-by .col-xs-8 {
+    width: calc(100% -  216px);
+    width: -moz-calc(100% -  216px);
+    width: -webkit-calc(100% -  216px);
+    width: -o-calc(100% -  216px);
+}
+.wrapper-refund-order .paypal-by .row {
+    margin: 0 -4px;
+}
+.wrapper-refund-order .paypal-by .button-swipe {
+    margin: -20px -20px 20px;
+    display: block;
+}
+.wrapper-refund-order .paypal-by .button-swipe .btn {
+    display: block;
+    height: 43px;
+    background-color: #ececec;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    font-size: 15px;
+    color: #4a4a4a;
+    font-weight: normal;
+}
+.wrapper-refund-order .paypal-by .button-swipe .btn:after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/button-swipe1.svg');
+    vertical-align: middle;
+    margin-left: 13px;
+}
+.wrapper-refund-order .paypal-by .button-swipe .btn.active:after {
+    background-image: url('../images/button-swipe2.svg');
+}
+.block-refund-success {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 75px;
+    font-size: 16px;
+}
+.block-refund-success .icon {
+    display: block;
+    margin: 0 auto 30px;
+    width: 93px;
+    height: 93px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/refund-success.svg');
+    background-size: 100%;
+}
+.block-refund-success .box-email {
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+.block-refund-success .box-email .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+.block-refund-success .box-email .control {
+    position: relative;
+    margin-top: 14px;
+}
+.block-refund-success .box-email label {
+    display: block;
+    text-align: left;
+    font-weight: normal;
+    line-height: 26px;
+    margin-bottom: 0;
+    font-size: 15px;
+    color: #1d1d1d;
+    padding: 0;
+}
+.block-refund-success .box-email .note {
+    color: #9b9b9b;
+    font-size: 14px;
+    display: block;
+}
+.block-refund-success .box-email .form-control {
+    display: block;
+    width: 100%;
+    height: 57px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: solid 1px #d9d9d9;
+    box-shadow: none;
+    font-size: 15px;
+    color: #1d1d1d;
+    padding-right: 115px;
+}
+.block-refund-success .box-email .btn {
+    display: block;
+    height: 44px;
+    border-radius: 4px;
+    background-color: #1e67e5;
+    width: 102px;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    z-index: 3;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.block-refund-success .box-email .btn-success:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image: url('../images/btn-success.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px auto;
+    margin-left: 5px;
+}
+.block-refund-success .validation-text {
+    display: block;
+    color: #d0021b;
+    line-height: 22px;
+    text-align: left;
+    font-size: 14px;
+}
+.popup-messages .refund-confirmation-text {
+    height: 139px;
+    background-color: #ffffff;
+    border-radius: 0;
+    border-width: 0 0 1px;
+    border-bottom: solid 1px #dfe1e4;
+    box-shadow: none;
+    font-size: 14px;
+    color: #7c7d80;
+    padding: 17px 20px;
+    margin-top: 20px;
+    line-height: 25px;
+}
+.popup-messages .refund-confirmation-text:focus {
+    border: solid 1px #1e67e5;
+}
+.popup-messages-refund .modal-content {
+    background-color: #f8f8f8;
+}
+.popup-messages-refund .modal-header {
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 21px ;
+}
+.popup-messages-refund .modal-header .title {
+    font-size: 17px;
+    font-weight: normal;
+    margin: 0;
+    line-height: 24px;
+}
+.popup-messages-refund .modal-body {
+    padding: 20px 20px 25px;
+}

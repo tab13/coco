@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="91" height="48" viewBox="0 0 91 48">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#92C0FF" d="M1 1h18v45H1z"/>
+        <path stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M.314.207H17.73l1.786 1.724L21.124.207h69.575v36.047H20.945l-1.518-1.466-1.519 1.466H.314zM4.839 11.494l-.045 13.677M7.587 3.959l.075 28.136M12.487 12.75h2"/>
+        <ellipse cx="13.543" cy="18.332" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="1.376" ry="1.426"/>
+        <ellipse cx="76.94" cy="23.016" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="2.117" ry="2.037"/>
+        <ellipse cx="82.656" cy="28.515" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="2.117" ry="2.037"/>
+        <path stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M85.107 20.658l-9.984 9.605"/>
+        <ellipse cx="13.543" cy="22.405" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="1.376" ry="1.426"/>
+        <rect width="6.139" height="8.961" x="30.583" y="5.502" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="3.069"/>
+        <rect width="6.139" height="8.961" x="39.05" y="5.502" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="3.069"/>
+        <path stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M27.71 24.75h28.41M27.71 27.75h28.41M27.71 30.75h14.642M.676 38.905h17.398l1.337-1.379 1.428 1.38h69.857M.676 41.663h17.398l1.337-1.38 1.428 1.38h69.857M.676 44.42h17.398l1.337-1.379 1.428 1.379h69.857M.676 47.35h17.398l1.337-1.379 1.428 1.379h69.857M26.75 6.5V14"/>
+        <g fill="#1E67E5" stroke="#1E67E5" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" transform="translate(18 3)">
+            <ellipse cx="58.199" cy="2.807" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="1.382" rx="1" ry="1"/>
+            <ellipse cx="61.163" cy="2.807" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="4.233" rx="1" ry="1"/>
+            <ellipse cx="63.915" cy="2.807" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="6.88" rx="1" ry="1"/>
+            <ellipse cx="66.878" cy="2.807" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="9.731" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="12.583" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="15.23" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="18.081" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="20.729" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="23.58" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="26.228" rx="1" ry="1"/>
+            <ellipse cx="1.259" cy="29.079" rx="1" ry="1"/>
+        </g>
+    </g>
+</svg>

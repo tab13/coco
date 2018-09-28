@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>logout</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logout" transform="translate(-3.000000, -3.000000)">
+            <g transform="translate(12.500000, 12.500000) scale(-1, 1) translate(-12.500000, -12.500000) ">
+                <g>
+                    <g id="group" transform="translate(4.000000, 4.000000)" fill-rule="nonzero" fill="#6980EC">
+                        <path d="M15.9966412,9.10351423 L11.6035528,13.174912 L12.6231668,14.275088 L17.609807,9.65360226 C17.9300643,9.35679624 17.9300643,8.85023221 17.609807,8.5534262 L12.6231668,3.93194043 L11.6035528,5.03211648 L15.9966412,9.10351423 Z" id="shape"></path>
+                        <polygon id="shape" points="17.1 8.25 6.175 8.25 6.175 9.75 17.1 9.75"></polygon>
+                        <polygon id="shape" points="0.75 17.25 0.75 0.75 11.4 0.75 11.4 -0.75 -0.75 -0.75 -0.75 18.75 11.4 18.75 11.4 17.25"></polygon>
+                    </g>
+                    <rect id="bounds" x="0" y="0" width="25" height="25"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

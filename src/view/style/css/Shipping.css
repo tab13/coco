@@ -1,0 +1,206 @@
+
+.popup-shippingadd .scroll-content {
+  padding-top: 0;
+}
+.popup-shippingadd .shipping-address .block-title,
+.popup-shippingadd .shipping-method .block-title,
+.popup-shippingadd .shipping-date .block-title {
+  line-height: 30px;
+  padding: 16px 30px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.popup-shippingadd .shipping-address .block-title {
+  cursor: pointer;
+}
+.popup-shippingadd .shipping-address .block-title:before {
+  font-family: 'icomoon';
+}
+.popup-shippingadd .shipping-address .block-title:before {
+  content: "\e90d";
+  color: #4a90e2;
+}
+.popup-shippingadd .shipping-address .block-title:before {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  float: right;
+  line-height: 30px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: normal;
+}
+.popup-shippingadd .shipping-address .address-content {
+  padding: 25px 30px 10px;
+  background-color: #fff;
+}
+.popup-shippingadd .shipping-method .list {
+  background-color: #fff;
+}
+.popup-shippingadd .shipping-method .list li + li {
+  border-top: solid 1px #dfe1e4;
+}
+.popup-shippingadd .shipping-method .list label {
+  display: block;
+  line-height: 30px;
+  padding: 15px 30px 15px 65px;
+  font-size: 15px;
+  font-weight: normal;
+  color: #3f4245;
+  position: relative;
+}
+.popup-shippingadd .shipping-method .list label .title,
+.popup-shippingadd .shipping-method .list label .value {
+  display: table-cell;
+  vertical-align: top;
+}
+.popup-shippingadd .shipping-method .list label .title {
+  width: 100%;
+  white-space: normal;
+}
+.popup-shippingadd .shipping-method .list label .value {
+  width: 1%;
+  white-space: nowrap;
+}
+.popup-shippingadd .shipping-method .list input[type="radio"],
+.popup-shippingadd .shipping-method .list input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+.popup-shippingadd .shipping-method .list input[type="radio"] + span,
+.popup-shippingadd .shipping-method .list input[type="checkbox"] + span {
+  display: table;
+  width: 100%;
+}
+.popup-shippingadd .shipping-method .list input[type="radio"] + span:before,
+.popup-shippingadd .shipping-method .list input[type="checkbox"] + span:before {
+  content: '';
+  width: 21px;
+  height: 20px;
+  background-color: #ffffff;
+  border: solid 1px #e0e0e0;
+  display: block;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  border-radius: 100%;
+  font-size: 11px;
+  text-align: center;
+  font-weight: normal;
+  line-height: 18px;
+}
+.popup-shippingadd .shipping-method .list input[type="radio"]:checked + span:before,
+.popup-shippingadd .shipping-method .list input[type="checkbox"]:checked + span:before {
+  font-family: 'icomoon';
+}
+.popup-shippingadd .shipping-method .list input[type="radio"]:checked + span:before,
+.popup-shippingadd .shipping-method .list input[type="checkbox"]:checked + span:before {
+  content: "\e902";
+  color: #31c763;
+}
+.popup-shippingadd .shipping-method .list input[type="radio"]:checked + span:before,
+.popup-shippingadd .shipping-method .list input[type="checkbox"]:checked + span:before {
+  background-color: #1d63dc;
+  border-color: #1d63dc;
+  color: #fff;
+}
+.popup-shippingadd .shipping-method .block-content {
+  background-color: #fff;
+  padding: 15px 30px;
+  color: #3f4245;
+  line-height: 30px;
+}
+.popup-shippingadd .shipping-method .block-content:before,
+.popup-shippingadd .shipping-method .block-content:after {
+  content: "";
+  display: table;
+}
+.popup-shippingadd .shipping-method .block-content:after {
+  clear: both;
+}
+.popup-shippingadd .shipping-method .block-content label {
+  color: #3f4245;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 30px;
+}
+.popup-shippingadd .shipping-date .select-date {
+  background-color: #fff;
+  padding: 15px 30px;
+  color: #3f4245;
+  line-height: 30px;
+  cursor: pointer;
+  position: relative;
+}
+.popup-shippingadd .shipping-date .select-date:before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  float: right;
+  line-height: 30px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: normal;
+  background-image: url('../images/calendar2.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.popup-shippingadd .shipping-date .select-date .value {
+  float: right;
+}
+.popup-shippingadd .shipping-date .select-date.active:before {
+  content: none;
+}
+.popup-shippingadd .actions-remove-shipping {
+  text-align: center;
+  padding: 22px;
+  border-radius: 0 0 10px 10px;
+  background-color: #f8f8f8;
+  display: block;
+  width: 100%;
+  position: relative;
+  top: -20px;
+}
+.popup-shippingadd .actions-remove-shipping .btn {
+  height: 50px;
+  width: 255px;
+  font-weight: normal;
+  font-size: 18px;
+}
+#datepicker-shipping .bootstrap-datetimepicker-widget {
+  right: 0px !important;
+  left:auto !important;
+}
+#datepicker-shipping .bootstrap-datetimepicker-widget.dropdown-menu.top:before {
+  right: 6px;
+  left: auto;
+}
+#datepicker-shipping .bootstrap-datetimepicker-widget.dropdown-menu.top:after {
+  right:7px;
+  left: auto;
+}
+#datepicker-shipping input {
+  padding: 0;
+  background-color: transparent;
+  text-align: right;
+  height: 30px;
+  font-size: 15px;
+  color: #3f4245;
+}
+.select-delivery-label {
+  position: relative;
+  z-index: 10;
+}
+#datepicker-shipping {
+  position: absolute !important;
+  top: 15px;
+  right: 30px;
+  z-index: 1;
+  left: 0px;
+}
+
+.bootstrap-datetimepicker-widget {
+  list-style: none;
+}

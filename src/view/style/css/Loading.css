@@ -1,0 +1,27 @@
+#root {
+    height: 100%;
+}
+#root > div {
+    height: 100%;
+}
+.wrapper-circular {
+    position: absolute;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.CircularProgressbar .CircularProgressbar-trail {
+    stroke-width: 2;
+    stroke: #f2f2f2;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+    stroke: #4786ff;
+    stroke-width: 5;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    fill: #676767;
+    font-size: 25px;
+}
