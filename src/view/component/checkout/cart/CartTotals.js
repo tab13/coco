@@ -21,7 +21,7 @@ import ProductTypeConstant from '../../../constant/ProductTypeConstant';
 import GiftcardHelper from "../../../../helper/GiftcardHelper";
 import GiftcardForm from "./totals/GiftcardForm";
 import NumberHelper from "../../../../helper/NumberHelper";
-import StaffDiscountComponent from "./totals/StaffDiscount";
+import StaffDiscountComponent from "../staff-discount/StaffDiscount";
 
 export class CartTotalsComponent extends CoreComponent {
     static className = 'CartTotalsComponent';
@@ -217,8 +217,6 @@ export class CartTotalsComponent extends CoreComponent {
             return <StaffDiscountComponent key={total.code}
                                       quote={this.props.quote}
                                       total={total}
-                                      showBackDrop={() => this.showBackDrop()}
-                                      hideBackDrop={() => this.hideBackDrop()}
             />
         } else if (total.code === "discount") {
             return <DiscountComponent key={total.code}

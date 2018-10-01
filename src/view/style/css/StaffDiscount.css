@@ -1,0 +1,41 @@
+.popup-staffdiscount .scroll-content {
+    padding-top: 0;
+}
+
+.popup-staffdiscount .modal-header {
+    border-radius: unset;
+}
+
+.popup-staffdiscount .modal-header .btn-default-staffdiscount-header {
+    color: #333;
+    border-color: #ccc;
+    padding: 16px 30px;
+    border-radius: unset;
+}
+
+.popup-staffdiscount .modal-body {
+    border-radius: unset;
+}
+
+.popup-staffdiscount .modal-body .btn-default-staffdiscount{
+    border-radius: unset;
+    border: 1px solid #c5c5c5;
+}
+
+.popup-staffdiscount .modal-body table tbody tr td{
+    padding: 15px;
+    border-top: unset;
+}
+
+.popup-staffdiscount .modal-footer {
+    text-align: right;
+    background-color: #f8f8f8;
+    width: 100%;
+    border-top: none;
+}
+
+.popup-staffdiscount .modal-footer .btn-default-staffdiscount {
+    color: #333;
+    border-color: #ccc;
+    border-radius: unset;
+}
