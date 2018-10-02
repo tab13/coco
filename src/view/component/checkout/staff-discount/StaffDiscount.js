@@ -58,8 +58,9 @@ export class StaffDiscountComponent extends CoreComponent {
         let classNameAmount = shipping_method ?  "amount" : "add-discount";
         let discountAmount = total.value;
         let displayValue = shipping_method ? CurrencyHelper.format(Math.abs(discountAmount), null, null) : "";
-        // check config show shipping method
-        let className = CheckoutHelper.isShowShippingMethod() ? "totals-action" : "hidden";
+        // COCO-CUSTOMIZE check config show staff discount
+        // let className = CheckoutHelper.isShowShippingMethod() ? "totals-action" : "hidden";
+        let className = "totals-action";
 
         // if has any gate way payment is error or processing payment => user cannot use discount function
         if (hasPaidOrWaitingGatewayPayment) {
