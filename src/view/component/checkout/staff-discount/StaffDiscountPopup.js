@@ -44,6 +44,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
      * cancel popup
      */
     cancelPopup() {
+        this.props.showPopup();
     }
 
     /**
@@ -125,7 +126,11 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                         </table>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-default-staffdiscount">
+                        <button type="button" className="btn btn-default-staffdiscount"
+                                onClick={() => {
+                                    this.cancelPopup()
+                                }}
+                        >
                             {this.props.t('Cancel')}
                         </button>
                         <button type="button" className="btn btn-default-staffdiscount">
