@@ -74,7 +74,7 @@ export class StaffDiscountService extends CoreService{
      * @returns {number}
      */
     getTotalPriceOfProductAfterDiscountInCart(quote) {
-        return CurrencyHelper.roundToFloat(quote.subtotal - quote.grand_total + quote.tax_amount);
+        return this.getTotalPriceOfProductInCart(quote) - CurrencyHelper.roundToFloat(quote.subtotal - quote.grand_total + quote.tax_amount);
     }
 
 }
