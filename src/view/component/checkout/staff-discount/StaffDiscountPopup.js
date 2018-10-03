@@ -8,6 +8,7 @@ import SmoothScrollbar from "smooth-scrollbar/index";
 import {Modal} from "react-bootstrap";
 import QuoteAction from "../../../action/checkout/QuoteAction";
 import $ from "jquery";
+import StaffDiscountService from "../../../../service/staff-discount/StaffDiscountService";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
     static className = 'StaffDiscountPopupComponent';
@@ -39,6 +40,12 @@ export class StaffDiscountPopupComponent extends CoreComponent {
      */
     componentWillReceiveProps(nextProps) {
 
+        let totalPrice = StaffDiscountService.getTotalPriceOfProductInCart(nextProps.quote);
+        console.log(totalPrice);
+
+        // console.log(StaffDiscountService.getConfigStaffDiscount());
+        console.log('manager discount: ' + StaffDiscountService.getConfigManagerDiscount());
+        console.log('max staff discount: ' + StaffDiscountService.getMaxStaffDiscountByAmount(2221));
     }
 
     /**
