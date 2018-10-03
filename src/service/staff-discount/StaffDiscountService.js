@@ -2,7 +2,6 @@ import NumberHelper from "../../helper/NumberHelper";
 import CoreService from "../CoreService";
 import ServiceFactory from "../../framework/factory/ServiceFactory";
 import ConfigHelper from "../../helper/ConfigHelper";
-import {unserialize} from "locutus";
 import CurrencyHelper from "../../helper/CurrencyHelper";
 
 export class StaffDiscountService extends CoreService{
