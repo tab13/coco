@@ -9,6 +9,8 @@ import {Modal} from "react-bootstrap";
 import QuoteAction from "../../../action/checkout/QuoteAction";
 import $ from "jquery";
 import StaffDiscountService from "../../../../service/staff-discount/StaffDiscountService";
+import StaffDiscountConstant from "../../../constant/StaffDiscountConstant";
+import StaffManagerPinCodePopupComponent from "./StaffManagerPinCodePopup";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
     static className = 'StaffDiscountPopupComponent';
@@ -26,6 +28,9 @@ export class StaffDiscountPopupComponent extends CoreComponent {
      */
     constructor(props) {
         super(props);
+        this.state = {
+            isOpenStaffManagerPinCodePopup: false
+        }
     }
 
     /**
@@ -49,6 +54,18 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     }
 
     /**
+     * Show or hide popups
+     *
+     * @param {string} type
+     */
+    showPopup(type) {
+        let asdasd  = StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE;
+        this.setState({
+            isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE
+        });
+    }
+
+    /**
      * cancel popup
      */
     cancelPopup() {
@@ -65,7 +82,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     }
 
     template() {
-        let {isOpenStaffDiscountPopup} = this.props;
+        let {isOpenStaffDiscountPopup, quote} = this.props;
         if (!isOpenStaffDiscountPopup) {
             if (this.popup_staff_discount) {
                 SmoothScrollbar.destroy(this.popup_staff_discount);
@@ -81,10 +98,26 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                     show={isOpenStaffDiscountPopup}
                 >
                     <div className="modal-header">
-                        <button type="button" className="btn btn-default-staffdiscount-header">
+                        <button type="button" className="btn btn-default-staffdiscount-header"
+                                onClick={
+                                    () => {
+                                        this.showPopup(StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE);
+                                    }
+                                }
+                        >
+                            {
+                                <StaffManagerPinCodePopupComponent isOpenStaffManagerPinCodePopup={this.state.isOpenStaffManagerPinCodePopup}
+                                                             quote={quote}
+                                                             showPopup={(type) => this.showPopup(type)}
+                                />
+                            }
                             {this.props.t('STAFF')}
                         </button>
-                        <button type="button" className="btn btn-default-staffdiscount-header">
+                        <button type="button" className="btn btn-default-staffdiscount-header"
+                                onClick={() => {
+                                    this.cancelPopup()
+                                }}
+                        >
                             {this.props.t('MANAGER')}
                         </button>
                     </div>
