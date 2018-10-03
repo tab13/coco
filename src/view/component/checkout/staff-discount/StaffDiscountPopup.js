@@ -8,6 +8,7 @@ import SmoothScrollbar from "smooth-scrollbar/index";
 import {Modal} from "react-bootstrap";
 import QuoteAction from "../../../action/checkout/QuoteAction";
 import $ from "jquery";
+import StaffDiscountService from "../../../../service/staff-discount/StaffDiscountService";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
     static className = 'StaffDiscountPopupComponent';
@@ -28,16 +29,18 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     }
 
     /**
-     * componentWillMount get list shipping method
+     * componentWillMount
      */
     componentWillMount() {
     }
 
     /**
-     * This function after mapStateToProps then set list shipping to state
+     * This function after mapStateToProps then
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
+        let totalPrice = StaffDiscountService.getTotalPriceOfProductInCart(nextProps.quote);
+        console.log(totalPrice);
     }
 
     /**
