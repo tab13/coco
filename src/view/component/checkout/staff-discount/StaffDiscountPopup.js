@@ -29,7 +29,9 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isOpenStaffManagerPinCodePopup: false
+            isOpenStaffManagerPinCodePopup: false,
+            staff_discount: 0,
+            maximum_discount: 0
         }
     }
 
@@ -50,20 +52,25 @@ export class StaffDiscountPopupComponent extends CoreComponent {
 
         // console.log(StaffDiscountService.getConfigStaffDiscount());
         console.log('manager discount: ' + StaffDiscountService.getConfigManagerDiscount());
-        console.log('max staff discount: ' + StaffDiscountService.getMaxStaffDiscountByAmount(2221));
+        let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(totalPrice));
+        let manager_discount = parseFloat(StaffDiscountService.getConfigManagerDiscount());
+        this.setState({
+            staff_discount: staff_discount,
+            maximum_discount: manager_discount
+        })
     }
 
-    /**
-     * Show or hide popups
-     *
-     * @param {string} type
-     */
-    showPopup(type) {
-        let asdasd  = StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE;
-        this.setState({
-            isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE
-        });
-    }
+/**
+ * Show or hide popups
+ *
+ * @param {string} type
+ */
+showPopup(type) {
+    let asdasd  = StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE;
+    this.setState({
+        isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE
+    });
+}
 
     /**
      * cancel popup
@@ -81,6 +88,32 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         $(elm).css('height', height + 'px');
     }
 
+    /**
+     * set input
+     * @param input
+     */
+    setInput(input) {
+        this.input = input;
+    }
+
+    /**
+     * Onchange Input
+     */
+    onChangeDiscountPercent(event) {
+        if (isNaN(event.target.value)) {
+            event.target.value = 0;
+        } else {
+            if (parseFloat(event.target.value) < 0 ) {
+                event.target.value = 0;
+            }
+            if (parseFloat(event.target.value) > parseFloat(this.state.staff_discount)) {
+                event.target.value = parseFloat(this.state.staff_discount);
+            }
+        }
+
+    }
+
+
     template() {
         let {isOpenStaffDiscountPopup, quote} = this.props;
         if (!isOpenStaffDiscountPopup) {
@@ -89,6 +122,8 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                 this.scrollbar = null;
             }
         }
+        let staff_discount = this.state.staff_discount;
+        console.log(staff_discount);
         return (
             <Fragment>
                 <Modal
@@ -130,23 +165,34 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                 </td>
                                 <td className="block-content">
                                     <button type="button" className="btn btn-default-staffdiscount">
-                                        5%
+                                        0%
                                     </button>
-                                    <button type="button" className="btn btn-default-staffdiscount">
-                                        10%
-                                    </button>
-                                    <button type="button" className="btn btn-default-staffdiscount">
-                                        15%
-                                    </button>
-                                    <button type="button" className="btn btn-default-staffdiscount">
-                                        20%
-                                    </button>
+                                    {
+                                        staff_discount >= 5 ?
+                                            <button type="button" className="btn btn-default-staffdiscount">
+                                                5%
+                                            </button>
+                                            : ''
+                                    }
+                                    {
+                                        staff_discount >= 10 ?
+                                            <button type="button" className="btn btn-default-staffdiscount">
+                                                10%
+                                            </button>
+                                            : ''
+                                    }
                                 </td>
                             </tr>
                             <tr className="percentage-discount">
-                                <td className="block-title">{this.props.t('Discount')} 0% - 10%</td>
+                                <td className="block-title">{this.props.t('Discount')} 0% - {staff_discount}%</td>
                                 <td className="block-content">
-                                    <input/>
+                                    <input
+                                        id='staff_discount_percent'
+                                        type="text"
+                                        defaultValue={0}
+                                        ref={this.setInput.bind(this)}
+                                        onChange={(event) => this.onChangeDiscountPercent(event)}
+                                    />
                                 </td>
                             </tr>
                             <tr className="fix-discount">
