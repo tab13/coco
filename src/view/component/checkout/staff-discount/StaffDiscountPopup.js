@@ -30,6 +30,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         super(props);
         this.state = {
             isOpenStaffManagerPinCodePopup: false,
+            isOpenStaffDiscountPopup: false,
             staff_discount: 0,
             maximum_discount: 0
         }
@@ -47,6 +48,10 @@ export class StaffDiscountPopupComponent extends CoreComponent {
      */
     componentWillReceiveProps(nextProps) {
 
+        this.setState({
+            isOpenStaffDiscountPopup: nextProps.isOpenStaffDiscountPopup
+        });
+
         let totalPrice = StaffDiscountService.getTotalPriceOfProductInCart(nextProps.quote);
         console.log(totalPrice);
 
@@ -60,17 +65,17 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         })
     }
 
-/**
- * Show or hide popups
- *
- * @param {string} type
- */
-showPopup(type) {
-    let asdasd  = StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE;
-    this.setState({
-        isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE
-    });
-}
+    /**
+     * Show or hide popups
+     *
+     * @param {string} type
+     */
+    showPopup(type) {
+        this.setState({
+            isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
+            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT
+        });
+    }
 
     /**
      * cancel popup
@@ -115,8 +120,8 @@ showPopup(type) {
 
 
     template() {
-        let {isOpenStaffDiscountPopup, quote} = this.props;
-        if (!isOpenStaffDiscountPopup) {
+        let {quote} = this.props;
+        if (!this.state.isOpenStaffDiscountPopup) {
             if (this.popup_staff_discount) {
                 SmoothScrollbar.destroy(this.popup_staff_discount);
                 this.scrollbar = null;
@@ -130,28 +135,18 @@ showPopup(type) {
                     bsSize={"lg"}
                     className={"popup-edit-customer popup-staffdiscount"}
                     dialogClassName={"popup-create-customer in"}
-                    show={isOpenStaffDiscountPopup}
+                    show={this.state.isOpenStaffDiscountPopup}
                 >
                     <div className="modal-header">
+                        <button type="button" className="btn btn-default-staffdiscount-header">
+                            {this.props.t('STAFF')}
+                        </button>
                         <button type="button" className="btn btn-default-staffdiscount-header"
                                 onClick={
                                     () => {
                                         this.showPopup(StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE);
                                     }
                                 }
-                        >
-                            {
-                                <StaffManagerPinCodePopupComponent isOpenStaffManagerPinCodePopup={this.state.isOpenStaffManagerPinCodePopup}
-                                                             quote={quote}
-                                                             showPopup={(type) => this.showPopup(type)}
-                                />
-                            }
-                            {this.props.t('STAFF')}
-                        </button>
-                        <button type="button" className="btn btn-default-staffdiscount-header"
-                                onClick={() => {
-                                    this.cancelPopup()
-                                }}
                         >
                             {this.props.t('MANAGER')}
                         </button>
@@ -225,6 +220,12 @@ showPopup(type) {
                         </button>
                     </div>
                 </Modal>
+                {
+                    <StaffManagerPinCodePopupComponent isOpenStaffManagerPinCodePopup={this.state.isOpenStaffManagerPinCodePopup}
+                                                       quote={quote}
+                                                       showPopup={(type) => this.showPopup(type)}
+                    />
+                }
             </Fragment>
         )
     }

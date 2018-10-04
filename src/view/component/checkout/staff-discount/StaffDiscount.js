@@ -19,7 +19,8 @@ export class StaffDiscountComponent extends CoreComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isOpenStaffDiscountPopup: false
+            isOpenStaffDiscountPopup: false,
+            isOpenStaffManagerPinCodePopup: false,
         }
     }
 
@@ -30,7 +31,8 @@ export class StaffDiscountComponent extends CoreComponent {
      */
     showPopup(type) {
         this.setState({
-            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT
+            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT,
+            isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
         });
     }
 

@@ -11,11 +11,14 @@ import StaffDiscountConstant from "../../../constant/StaffDiscountConstant";
 export class StaffManagerPinCodePopupComponent extends CoreComponent{
     static className = 'StaffManagerPinCodePopupComponent';
     setPopupStaffManagerPinCodeElement = element => {
-        this.heightPopup('.popup-staffdiscount .modal-dialog');
+        this.heightPopup('.popup-staffpincode .modal-dialog');
     };
 
     constructor(props) {
         super(props);
+        this.state = {
+            isOpenStaffManagerPinCodePopup: false
+        }
     }
 
     componentWillMount() {
@@ -23,14 +26,28 @@ export class StaffManagerPinCodePopupComponent extends CoreComponent{
     }
 
     componentWillReceiveProps(nextProps) {
+        this.setState({
+            isOpenStaffManagerPinCodePopup: nextProps.isOpenStaffManagerPinCodePopup
+        });
+    }
 
+    /**
+     * Show or hide popups
+     *
+     * @param {string} type
+     */
+    showPopup(type) {
+        this.setState({
+            isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
+            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT
+        });
     }
 
     /**
      * cancel popup
      */
-    cancelPopup() {
-        this.props.showPopup();
+    cancelPopup(type) {
+        this.props.showPopup(type);
     }
 
     /**
@@ -43,30 +60,27 @@ export class StaffManagerPinCodePopupComponent extends CoreComponent{
     }
 
     template() {
-        let {isOpenStaffManagerPinCodePopup} = this.props;
         return (
-            <Fragment>
                 <Modal
                     bsSize={"lg"}
-                    className={"popup-edit-customer popup-staffdiscount"}
+                    className={"popup-edit-customer popup-staffpincode"}
                     dialogClassName={"popup-create-customer in"}
-                    show={isOpenStaffManagerPinCodePopup}
+                    show={this.state.isOpenStaffManagerPinCodePopup}
                 >
                     <div className="modal-header">
-                        <button type="button" className="btn btn-default-staffdiscount-header aaaaa"
+                        <button type="button" className="btn btn-default-staffpincode-header aaaaa"
                                 onClick={() => {
-                                    this.cancelPopup()
+                                    this.cancelPopup(StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT)
                                 }}
                         >
-                            {this.props.t('Exit')}
                         </button>
                     </div>
                     <div data-scrollbar ref={this.setPopupStaffManagerPinCodeElement} className="modal-body">
                         <div className="manager-pincode">
-                            <td className="block-title">{this.props.t('Manager PIN Code')}</td>
-                            <td className="block-content">
+                            <div className="block-title">{this.props.t('Manager PIN Code')}</div>
+                            <div className="block-content">
                                 <input type="password"/>
-                            </td>
+                            </div>
                         </div>
                     </div>
                     <div className="modal-footer">
@@ -75,7 +89,6 @@ export class StaffManagerPinCodePopupComponent extends CoreComponent{
                         </button>
                     </div>
                 </Modal>
-            </Fragment>
         )
     }
 }

@@ -1,3 +1,4 @@
+/* staff discount popup */
 .popup-staffdiscount .scroll-content {
     padding-top: 0;
 }
@@ -35,6 +36,65 @@
 }
 
 .popup-staffdiscount .modal-footer .btn-default-staffdiscount {
+    color: #333;
+    border-color: #ccc;
+    border-radius: unset;
+}
+
+
+/* staff manager pin code popup */
+.popup-staffpincode .scroll-content {
+    padding-top: 0;
+}
+
+.popup-staffpincode .modal-header {
+    border-radius: unset;
+    border-bottom: unset;
+    padding: 5px !important;
+}
+
+.popup-staffpincode .modal-header .btn-default-staffpincode-header {
+    background-image: url('../images/clear.svg');
+    width: 5%;
+    display: block;
+    text-align: center;
+    height: 20px;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-color: transparent;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 0 4px 0;
+}
+
+.popup-staffpincode .modal-body {
+    border-radius: unset;
+    text-align: center;
+    width: 100%;
+    padding-top: 4%;
+}
+
+.popup-staffpincode .modal-body .manager-pincode {
+    display: inline-flex;
+    width: 50%;
+}
+
+.popup-staffpincode .modal-body .manager-pincode .block-title {
+    margin-right: 10%;
+    align-self: center;
+}
+
+.popup-staffpincode .modal-footer {
+    text-align: center;
+    background-color: #f8f8f8;
+    width: 100%;
+    border-top: none;
+    padding: 20px;
+}
+
+.popup-staffpincode .modal-footer .btn-default-staffdiscount {
     color: #333;
     border-color: #ccc;
     border-radius: unset;
