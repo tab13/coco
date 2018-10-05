@@ -24,6 +24,7 @@ import taxEpic from "./TaxEpic";
 import multiCheckoutEpic from "./MultiCheckoutEpic";
 import onHoldOrderEpic from "./OnHoldOrderEpic";
 import sessionEpic from "./SessionEpic";
+import staffDiscountEpic from "./staff-discount/StaffDiscountEpic";
 
 export default () => {
     const epic$ = new BehaviorSubject(combineEpics(
@@ -49,7 +50,8 @@ export default () => {
         taxEpic,
         multiCheckoutEpic,
         onHoldOrderEpic,
-        sessionEpic
+        sessionEpic,
+        staffDiscountEpic
     ));
 
     const rootEpic = (action$, store) =>

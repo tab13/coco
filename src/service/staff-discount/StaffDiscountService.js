@@ -3,9 +3,15 @@ import CoreService from "../CoreService";
 import ServiceFactory from "../../framework/factory/ServiceFactory";
 import ConfigHelper from "../../helper/ConfigHelper";
 import CurrencyHelper from "../../helper/CurrencyHelper";
+import StaffDiscountResourceModel from '../../resource-model/staff-discount/StaffDiscountResourceModel';
 
 export class StaffDiscountService extends CoreService{
     static className = 'StaffDiscountService';
+    resourceModel = StaffDiscountResourceModel;
+
+    checkManagerStaffPinCode(pincode) {
+        return this.getResourceModel().checkManagerStaffPinCode(pincode);
+    }
 
     /**
      * Get total original price of products in cart
@@ -76,6 +82,7 @@ export class StaffDiscountService extends CoreService{
     getTotalPriceOfProductAfterDiscountInCart(quote) {
         return this.getTotalPriceOfProductInCart(quote) - CurrencyHelper.roundToFloat(quote.subtotal - quote.grand_total + quote.tax_amount);
     }
+
 
 }
 

@@ -16,3 +16,4 @@ export { default as OmcTaxRule } from './OmcTaxRule';
 export { default as OmcSession } from './OmcSession';
 export { default as OmcCatalogRuleProductPrice } from './OmcCatalogRuleProductPrice';
 export { default as OmcGiftcard } from './OmcGiftcard';
+export { default as OmcStaffDiscount} from './OmcStaffDiscount';

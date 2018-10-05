@@ -87,7 +87,8 @@ export default class OmcAbstract {
     get_list_catalog_rule_product_price_api = this.store_url + "/V1/webpos/catalogrule/product_price/sync";
     get_catalog_rule_product_price_ids_api = this.store_url + "/V1/webpos/catalogrule/product_price/get_all_ids";
     apply_giftcode = this.store_url + "/V1/webpos/giftcard/apply";
-    reload_giftcodes = this.store_url +"/V1/webpos/giftcard/get_giftcard_by_customer"
+    reload_giftcodes = this.store_url +"/V1/webpos/giftcard/get_giftcard_by_customer";
+    check_staff_manager_pin_code_api = this.store_url + "/V1/webpos/staff/check_manager_pin_code";
 
     get_list_api = '';
     search_api = '';

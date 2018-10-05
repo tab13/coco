@@ -19,6 +19,7 @@ import order from "./OrderReducer";
 import multiCheckout from "./MultiCheckoutReducer";
 import onHoldOrder from "./OnHoldOrderReducer";
 import session from "./SessionReducer";
+import staffDiscount from "./staff-discount/StaffDiscountReducer";
 
 /**
  * Init core reducer
@@ -45,7 +46,8 @@ function coreReducer() {
         order,
         multiCheckout,
         onHoldOrder,
-        session
+        session,
+        staffDiscount
     })
 }
 

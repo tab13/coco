@@ -94,6 +94,11 @@
     padding: 20px;
 }
 
+.popup-staffpincode .modal-footer .manager-pincode-error-message {
+    margin-bottom: 2%;
+    color: red;
+}
+
 .popup-staffpincode .modal-footer .btn-default-staffdiscount {
     color: #333;
     border-color: #ccc;

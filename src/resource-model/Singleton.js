@@ -3,7 +3,7 @@ import { OmcUser, OmcConfig, OmcProduct,
         OmcStock, OmcOrder, OmcColorSwatch,
         OmcCustomer, OmcQuote, OmcCategory,
         OmcTaxRate, OmcTaxRule, OmcSession,
-        OmcCatalogRuleProductPrice, OmcGiftcard } from '../data/omc/index';
+        OmcCatalogRuleProductPrice, OmcGiftcard, OmcStaffDiscount} from '../data/omc/index';
 import Config from '../config/Config';
 import {IndexedDbProduct, IndexedDbSync,
         IndexedDbActionLog, IndexedDbPayment,
@@ -34,6 +34,7 @@ let resources = {
     'OmcSession': OmcSession,
     'OmcCatalogRuleProductPrice': OmcCatalogRuleProductPrice,
     'OmcGiftcard': OmcGiftcard,
+    'OmcStaffDiscount': OmcStaffDiscount,
     'IndexedDbProduct': IndexedDbProduct,
     'IndexedDbSync': IndexedDbSync,
     'IndexedDbActionLog': IndexedDbActionLog,
