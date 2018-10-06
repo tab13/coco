@@ -11,6 +11,7 @@ import $ from "jquery";
 import StaffDiscountService from "../../../../service/staff-discount/StaffDiscountService";
 import StaffDiscountConstant from "../../../constant/StaffDiscountConstant";
 import StaffManagerPinCodePopupComponent from "./StaffManagerPinCodePopup";
+import CurrencyHelper from "../../../../helper/CurrencyHelper";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
     static className = 'StaffDiscountPopupComponent';
@@ -32,7 +33,10 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             isOpenStaffManagerPinCodePopup: false,
             isOpenStaffDiscountPopup: false,
             staff_discount: 0,
-            maximum_discount: 0
+            manager_discount: 0,
+            max_min_staff_discount: {},
+            discount_apply: 0,
+            total_amount: 0
         }
     }
 
@@ -51,17 +55,18 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         this.setState({
             isOpenStaffDiscountPopup: nextProps.isOpenStaffDiscountPopup
         });
-
-        let totalPrice = StaffDiscountService.getTotalPriceOfProductInCart(nextProps.quote);
-        console.log(totalPrice);
-
-        // console.log(StaffDiscountService.getConfigStaffDiscount());
-        console.log('manager discount: ' + StaffDiscountService.getConfigManagerDiscount());
-        let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(totalPrice));
+        let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(nextProps.quote, 0);
+        let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(total_amount));
         let manager_discount = parseFloat(StaffDiscountService.getConfigManagerDiscount());
+
+        let max_min_staff_discount = StaffDiscountService.discountRangeForStaffDiscount(nextProps.quote, staff_discount);
+
         this.setState({
             staff_discount: staff_discount,
-            maximum_discount: manager_discount
+            manager_discount: manager_discount,
+            max_min_staff_discount: max_min_staff_discount,
+            discount_apply: max_min_staff_discount.min_discount,
+            total_amount: total_amount
         })
     }
 
@@ -104,18 +109,58 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     /**
      * Onchange Input
      */
-    onChangeDiscountPercent(event) {
-        if (isNaN(event.target.value)) {
-            event.target.value = 0;
+    onChangeStaffDiscountPercent(event) {
+        event.preventDefault();
+        let staff_discount = event.target.value;
+        if (isNaN(event.target.value) || !event.target.value) {
+            staff_discount = 0;
         } else {
-            if (parseFloat(event.target.value) < 0 ) {
-                event.target.value = 0;
+            if (parseFloat(event.target.value) < 0) {
+                staff_discount = 0;
             }
             if (parseFloat(event.target.value) > parseFloat(this.state.staff_discount)) {
-                event.target.value = parseFloat(this.state.staff_discount);
+                staff_discount = parseFloat(this.state.staff_discount);
             }
         }
 
+        this.refs.staff_discount_percent.value = staff_discount;
+        let {quote} = this.props;
+        let staff_discount_amount = StaffDiscountService.getStaffDiscountAmountApply(quote, staff_discount);
+        let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(quote, staff_discount);
+        this.refs.staff_discount_amount.value = staff_discount_amount;
+        this.setState({
+            discount_apply:  staff_discount_amount,
+            total_amount: total_amount
+        });
+    }
+
+
+    /**
+     * Onchange Input
+     */
+    onChangeStaftDiscountAmount(event) {
+        event.preventDefault();
+        let {quote} = this.props;
+        let staff_discount_amount = event.target.value;
+        if (isNaN(event.target.value) || !event.target.value) {
+            staff_discount_amount = this.state.max_min_staff_discount.min_discount;
+        } else {
+            if (parseFloat(event.target.value) < 0) {
+                staff_discount_amount = this.state.max_min_staff_discount.min_discount;
+            }
+            if (parseFloat(event.target.value) > parseFloat(this.state.max_min_staff_discount.max_discount)) {
+                staff_discount_amount = parseFloat(this.state.max_min_staff_discount.max_discount);
+            }
+        }
+
+        this.refs.staff_discount_amount.value = staff_discount_amount;
+        let staff_discount_percent = StaffDiscountService.getStaffDiscountPercentApply(quote, staff_discount_amount);
+        let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(quote, staff_discount_percent);
+        this.setState({
+            discount_apply:  staff_discount_amount,
+            total_amount: total_amount
+        });
+        this.refs.staff_discount_percent.value = staff_discount_percent;
     }
 
 
@@ -128,7 +173,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             }
         }
         let staff_discount = this.state.staff_discount;
-        console.log(staff_discount);
+
         return (
             <Fragment>
                 <Modal
@@ -184,25 +229,38 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                     <input
                                         id='staff_discount_percent'
                                         type="text"
-                                        defaultValue={0}
-                                        ref={this.setInput.bind(this)}
-                                        onChange={(event) => this.onChangeDiscountPercent(event)}
+                                        value={this.state.staff_discount_percent}
+                                        ref="staff_discount_percent"
+                                        onChange={(event) => this.onChangeStaffDiscountPercent(event)}
                                     />
                                 </td>
                             </tr>
                             <tr className="fix-discount">
-                                <td className="block-title">{this.props.t('Discount')} $2,213 - $2,403</td>
+                                <td className="block-title">{this.props.t('Discount')} {CurrencyHelper.format(this.state.max_min_staff_discount.min_discount) + ' - ' + CurrencyHelper.format(this.state.max_min_staff_discount.max_discount)}</td>
                                 <td className="block-content">
-                                    <input/>
+                                    <input
+                                        id='staff_discount_amount'
+                                        type="text"
+                                        defaultValue={this.state.max_min_staff_discount.min_discount}
+                                        // value={this.state.max_min_staff_discount.min_discount}
+                                        ref="staff_discount_amount"
+                                        onChange={(event) => this.onChangeStaftDiscountAmount(event)}
+                                    />
                                 </td>
                             </tr>
                             <tr className="applied-discount">
-                                <td className="block-title">{this.props.t('Discount Applied:')}</td>
-                                <td className="block-content">$2,213</td>
+                                <td className="block-title">
+                                    {this.props.t('Discount Applied:')}
+                                </td>
+                                <td className="block-content">
+                                    {CurrencyHelper.format(this.state.discount_apply)}
+                                </td>
                             </tr>
                             <tr className="total">
                                 <td className="block-title">{this.props.t('Total:')}</td>
-                                <td className="block-content">$14,436</td>
+                                <td className="block-content">
+                                    {CurrencyHelper.format(this.state.total_amount)}
+                                </td>
                             </tr>
                             </tbody>
                         </table>
