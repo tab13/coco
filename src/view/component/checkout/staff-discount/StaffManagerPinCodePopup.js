@@ -49,7 +49,7 @@ export class StaffManagerPinCodePopupComponent extends CoreComponent{
                         this.setState({
                             errorPinCodeMessage: '',
                         });
-                        this.cancelPopup(StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT)
+                        this.cancelPopup(StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_DISCOUNT)
                     }
                 }
             }

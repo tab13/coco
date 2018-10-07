@@ -104,3 +104,43 @@
     border-color: #ccc;
     border-radius: unset;
 }
+
+/* staff manager discount popup*/
+.popup-staffmanagerdiscount .scroll-content {
+    padding-top: 0;
+}
+
+.popup-staffmanagerdiscount .modal-header {
+    border-radius: unset;
+}
+
+/*.popup-staffmanagerdiscount .modal-header .block-title {*/
+    /**/
+/*}*/
+
+.popup-staffmanagerdiscount .modal-body {
+    border-radius: unset;
+}
+
+.popup-staffmanagerdiscount .modal-body .btn-default-staffmanagerdiscount{
+    border-radius: unset;
+    border: 1px solid #c5c5c5;
+}
+
+.popup-staffmanagerdiscount .modal-body table tbody tr td{
+    padding: 15px;
+    border-top: unset;
+}
+
+.popup-staffmanagerdiscount .modal-footer {
+    text-align: right;
+    background-color: #f8f8f8;
+    width: 100%;
+    border-top: none;
+}
+
+.popup-staffmanagerdiscount .modal-footer .btn-default-staffmanagerdiscount {
+    color: #333;
+    border-color: #ccc;
+    border-radius: unset;
+}

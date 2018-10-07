@@ -12,6 +12,7 @@ import StaffDiscountService from "../../../../service/staff-discount/StaffDiscou
 import StaffDiscountConstant from "../../../constant/StaffDiscountConstant";
 import StaffManagerPinCodePopupComponent from "./StaffManagerPinCodePopup";
 import CurrencyHelper from "../../../../helper/CurrencyHelper";
+import StaffManagerDiscountPopupComponent from "./StaffManagerDiscountPopup";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
     static className = 'StaffDiscountPopupComponent';
@@ -32,6 +33,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         this.state = {
             isOpenStaffManagerPinCodePopup: false,
             isOpenStaffDiscountPopup: false,
+            isOpenStaffManagerDiscountPopup: false,
             staff_discount: 0,
             manager_discount: 0,
             max_min_staff_discount: {},
@@ -78,7 +80,8 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     showPopup(type) {
         this.setState({
             isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
-            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT
+            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT,
+            isOpenStaffManagerDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_DISCOUNT
         });
     }
 
@@ -282,6 +285,12 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                     <StaffManagerPinCodePopupComponent isOpenStaffManagerPinCodePopup={this.state.isOpenStaffManagerPinCodePopup}
                                                        quote={quote}
                                                        showPopup={(type) => this.showPopup(type)}
+                    />
+                }
+                {
+                    <StaffManagerDiscountPopupComponent isOpenStaffManagerDiscountPopup={this.state.isOpenStaffManagerDiscountPopup}
+                                                        quote={quote}
+                                                        showPopup={(type) => this.showPopup(type)}
                     />
                 }
             </Fragment>
