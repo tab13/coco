@@ -26,7 +26,7 @@ export default class OmcAbstract {
     // base_url = "http://m2pwa.com/";
     // base_url = "https://omc20-dev.magestore.com/";
     // base_url = "https://omc20-test.magestore.com/";
-    base_url = "http://127.0.0.1/magento225cocopwa/";
+    base_url = "http://127.0.0.1/magento25cocopwa/";
     store_code = "default";
     store_url = "rest/" + this.store_code;
     login_api = this.store_url + "/V1/webpos/staff/login";

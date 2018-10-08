@@ -12,6 +12,7 @@ import StaffDiscountService from "../../../../service/staff-discount/StaffDiscou
 import StaffDiscountConstant from "../../../constant/StaffDiscountConstant";
 import StaffManagerPinCodePopupComponent from "./StaffManagerPinCodePopup";
 import CurrencyHelper from "../../../../helper/CurrencyHelper";
+import StaffDiscountGlobal from "../../../../service/staff-discount/StaffDiscountGlobal";
 import StaffManagerDiscountPopupComponent from "./StaffManagerDiscountPopup";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
@@ -38,7 +39,8 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             manager_discount: 0,
             max_min_staff_discount: {},
             discount_apply: 0,
-            total_amount: 0
+            total_amount: 0,
+            staff_discount_amount: 0,
         }
     }
 
@@ -57,8 +59,17 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         this.setState({
             isOpenStaffDiscountPopup: nextProps.isOpenStaffDiscountPopup
         });
-        let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(nextProps.quote, 0);
-        let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(total_amount));
+
+        let staff_discount_applied = StaffDiscountGlobal.staff_discount_applied;
+        let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(nextProps.quote, staff_discount_applied);
+
+        let staff_discount_amount = StaffDiscountService.getStaffDiscountAmountApply(nextProps.quote, staff_discount_applied);
+
+        let total_amount_to_get_discount = 0;
+        total_amount_to_get_discount = StaffDiscountService.getTotalAmountToGetDiscount(nextProps.quote);
+
+
+        let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(total_amount_to_get_discount));
         let manager_discount = parseFloat(StaffDiscountService.getConfigManagerDiscount());
 
         let max_min_staff_discount = StaffDiscountService.discountRangeForStaffDiscount(nextProps.quote, staff_discount);
@@ -67,8 +78,9 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             staff_discount: staff_discount,
             manager_discount: manager_discount,
             max_min_staff_discount: max_min_staff_discount,
-            discount_apply: max_min_staff_discount.min_discount,
-            total_amount: total_amount
+            discount_apply: staff_discount_amount,
+            total_amount: total_amount,
+            staff_discount_amount: staff_discount_amount
         })
     }
 
@@ -86,9 +98,34 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     }
 
     /**
+     * Close staff manager discount popup
+     * @param type
+     */
+    showPopupManagerDiscount(type) {
+        this.showPopup(type);
+        this.cancelPopup();
+    }
+
+    /**
      * cancel popup
      */
     cancelPopup() {
+        this.props.showPopup();
+    }
+
+    confirmPopup() {
+        // event.preventDefault();
+        let staff_discount = this.refs.staff_discount_percent.value;
+        StaffDiscountGlobal.staff_discount_applied = staff_discount;
+        let self = this;
+        let {quote} = this.props;
+        let items = quote.items;
+        items.map(function (item) {
+            let new_price = StaffDiscountService.getItemPriceAfterDiscount(item, staff_discount);
+            if (new_price !== false) {
+                self.props.actions.updateCustomPriceCartItem(item, new_price, 'Apply staff discount ' + staff_discount + '%' );
+            }
+        });
         this.props.showPopup();
     }
 
@@ -148,7 +185,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         if (isNaN(event.target.value) || !event.target.value) {
             staff_discount_amount = this.state.max_min_staff_discount.min_discount;
         } else {
-            if (parseFloat(event.target.value) < 0) {
+            if (parseFloat(event.target.value) < this.state.max_min_staff_discount.min_discount) {
                 staff_discount_amount = this.state.max_min_staff_discount.min_discount;
             }
             if (parseFloat(event.target.value) > parseFloat(this.state.max_min_staff_discount.max_discount)) {
@@ -163,9 +200,27 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             discount_apply:  staff_discount_amount,
             total_amount: total_amount
         });
+
+        if (staff_discount_percent < 0) {
+            staff_discount_percent = 0;
+        }
+        if (staff_discount_percent > this.state.staff_discount) {
+            staff_discount_percent = this.state.staff_discount;
+        }
         this.refs.staff_discount_percent.value = staff_discount_percent;
     }
 
+    selectPercent(value) {
+        this.refs.staff_discount_percent.value = value;
+        let {quote} = this.props;
+        let staff_discount_amount = StaffDiscountService.getStaffDiscountAmountApply(quote, value);
+        let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(quote, value);
+        this.refs.staff_discount_amount.value = staff_discount_amount;
+        this.setState({
+            discount_apply:  staff_discount_amount,
+            total_amount: total_amount
+        });
+    }
 
     template() {
         let {quote} = this.props;
@@ -207,19 +262,31 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                     {this.props.t('Select Discount:')}
                                 </td>
                                 <td className="block-content">
-                                    <button type="button" className="btn btn-default-staffdiscount">
+                                    <button type="button" className="btn btn-default-staffdiscount"
+                                            onClick={() => {
+                                                this.selectPercent(0)
+                                            }}
+                                    >
                                         0%
                                     </button>
                                     {
                                         staff_discount >= 5 ?
-                                            <button type="button" className="btn btn-default-staffdiscount">
+                                            <button type="button" className="btn btn-default-staffdiscount"
+                                                    onClick={() => {
+                                                        this.selectPercent(5)
+                                                    }}
+                                            >
                                                 5%
                                             </button>
                                             : ''
                                     }
                                     {
                                         staff_discount >= 10 ?
-                                            <button type="button" className="btn btn-default-staffdiscount">
+                                            <button type="button" className="btn btn-default-staffdiscount"
+                                                    onClick={() => {
+                                                        this.selectPercent(10)
+                                                    }}
+                                            >
                                                 10%
                                             </button>
                                             : ''
@@ -232,7 +299,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                     <input
                                         id='staff_discount_percent'
                                         type="text"
-                                        value={this.state.staff_discount_percent}
+                                        defaultValue={StaffDiscountGlobal.staff_discount_applied}
                                         ref="staff_discount_percent"
                                         onChange={(event) => this.onChangeStaffDiscountPercent(event)}
                                     />
@@ -244,7 +311,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                     <input
                                         id='staff_discount_amount'
                                         type="text"
-                                        defaultValue={this.state.max_min_staff_discount.min_discount}
+                                        defaultValue={this.state.staff_discount_amount}
                                         // value={this.state.max_min_staff_discount.min_discount}
                                         ref="staff_discount_amount"
                                         onChange={(event) => this.onChangeStaftDiscountAmount(event)}
@@ -276,7 +343,11 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                         >
                             {this.props.t('Cancel')}
                         </button>
-                        <button type="button" className="btn btn-default-staffdiscount">
+                        <button type="button" className="btn btn-default-staffdiscount"
+                                onClick={() => {
+                                    this.confirmPopup()
+                                }}
+                        >
                             {this.props.t('Confirm')}
                         </button>
                     </div>
@@ -290,7 +361,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                 {
                     <StaffManagerDiscountPopupComponent isOpenStaffManagerDiscountPopup={this.state.isOpenStaffManagerDiscountPopup}
                                                         quote={quote}
-                                                        showPopup={(type) => this.showPopup(type)}
+                                                        showPopup={(type) => this.showPopupManagerDiscount(type)}
                     />
                 }
             </Fragment>
@@ -308,13 +379,15 @@ export class StaffDiscountPopupContainer extends CoreContainer {
      */
     static mapState(state) {
         let {quote} = state.core.checkout;
+        console.log(state.core.checkout);
         return {quote: quote};
     }
 
     static mapDispatch(dispatch) {
         return {
             actions: {
-                setQuote: (quote) => dispatch(QuoteAction.setQuote(quote))
+                setQuote: (quote) => dispatch(QuoteAction.setQuote(quote)),
+                updateCustomPriceCartItem: (item, customPrice, reason) => dispatch(QuoteAction.updateCustomPriceCartItem(item, customPrice, reason))
             }
         }
     }

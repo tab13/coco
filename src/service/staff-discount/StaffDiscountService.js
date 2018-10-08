@@ -70,7 +70,6 @@ export class StaffDiscountService extends CoreService{
                 }
             }
         }
-
         return staff_discount;
     }
     /**
@@ -96,11 +95,22 @@ export class StaffDiscountService extends CoreService{
 
         if (items.length > 0) {
             items.map(function (item) {
-                min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
-                    max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                // min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                if (item.product.special_price) {
+                    min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
                 } else {
-                    max_discount = max_discount + min_discount;
+                    // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                    // min_discount = 0;
+                }
+                // if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
+                if (item.product.special_price) {
+                    if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
+                        max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    } else {
+                        max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                    }
+                } else {
+                    max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
                 }
             })
         }
@@ -123,12 +133,30 @@ export class StaffDiscountService extends CoreService{
         let min_discount = 0;
         if (items.length > 0) {
             items.map(function (item) {
-                min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
-                    staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                if (item.product.special_price) {
+                    min_discount = (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
                 } else {
-                    staff_discount_apply = staff_discount_apply + min_discount;
+                    // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                    min_discount = 0;
                 }
+
+                if (item.product.special_price) {
+                    if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
+                        staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    } else {
+                        staff_discount_apply = staff_discount_apply + min_discount
+                    }
+                } else {
+                    staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                }
+
+                // if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
+                // if (item.product.special_price && (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.product.special_price))) *100))) {
+                //     staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                // } else {
+                //     staff_discount_apply = staff_discount_apply + min_discount;
+                // }
             })
         }
 
@@ -157,16 +185,31 @@ export class StaffDiscountService extends CoreService{
         let total_discount_greater_than_avg = 0
         let total_item_less_than_avg = 0;
         if (items.length > 0) {
+            // items.map(function (item) {
+            //     if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
+            //         total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+            //     } else {
+            //         total_discount_greater_than_avg = total_discount_greater_than_avg + parseFloat(item.original_price) - parseFloat(item.price);
+            //     }
+            // })
+
             items.map(function (item) {
-                if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
-                    total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                let current_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                if (item.product.special_price) {
+                    if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
+                        total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                    } else {
+                        total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                    }
                 } else {
-                    total_discount_greater_than_avg = total_discount_greater_than_avg + parseFloat(item.original_price) - parseFloat(item.price);
+                    total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
                 }
-            })
+
+            });
+
         }
 
-        let staff_discount_percent_apply = ((parseFloat(staff_discount_amount) - total_discount_greater_than_avg) / total_item_less_than_avg);
+        let staff_discount_percent_apply = ((parseFloat(staff_discount_amount) - total_discount_greater_than_avg) / total_item_less_than_avg) * 100;
 
         return staff_discount_percent_apply;
     }
@@ -180,19 +223,69 @@ export class StaffDiscountService extends CoreService{
         let total_amount = quote.grand_total;
         let items = quote.items;
         if (items.length > 0) {
+            // items.map(function (item) {
+            //     let current_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+            //     if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
+            //         total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+            //     } else {
+            //         //max_discount = max_discount + min_discount;
+            //     }
+            // })
             items.map(function (item) {
                 let current_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
-                    total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                if (item.product.special_price) {
+                    if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
+                        total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                    } else {
+                    }
                 } else {
-                    //max_discount = max_discount + min_discount;
+                    total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
                 }
-            })
-        }
 
+            });
+        }
         return total_amount;
     }
 
+    /**
+     * get item price after discount
+     * @param item
+     * @param new_discount
+     * @returns {boolean}
+     */
+    getItemPriceAfterDiscount(item, new_discount) {
+        let new_price = false;
+        if (item.product.special_price) {
+            if (parseFloat(new_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+            } else {
+                new_price = item.product.special_price;
+            }
+        } else {
+            new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+        }
+
+        return new_price;
+    }
+
+    /**
+     * get total amount to get discount
+     * @param quote
+     */
+    getTotalAmountToGetDiscount(quote) {
+        let total_amount = quote.grand_total;
+        let items = quote.items;
+        items.map(function (item) {
+            let product = item.product;
+            if (product.special_price) {
+                total_amount = total_amount + parseFloat(product.special_price) - parseFloat(item.price);
+            } else {
+                total_amount = total_amount + parseFloat(item.original_price) - parseFloat(item.price);
+            }
+        });
+
+        return total_amount;
+    }
 }
 
 /**

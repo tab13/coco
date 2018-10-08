@@ -65,12 +65,12 @@ export class StaffManagerPinCodePopupComponent extends CoreComponent{
      *
      * @param {string} type
      */
-    showPopup(type) {
-        this.setState({
-            isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
-            isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT
-        });
-    }
+    // showPopup(type) {
+    //     this.setState({
+    //         isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
+    //         isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT
+    //     });
+    // }
 
     /**
      * cancel popup

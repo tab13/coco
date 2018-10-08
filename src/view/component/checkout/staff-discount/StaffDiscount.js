@@ -21,6 +21,7 @@ export class StaffDiscountComponent extends CoreComponent {
         this.state = {
             isOpenStaffDiscountPopup: false,
             isOpenStaffManagerPinCodePopup: false,
+            isOpenStaffManagerDiscountPopup: false
         }
     }
 
@@ -33,6 +34,7 @@ export class StaffDiscountComponent extends CoreComponent {
         this.setState({
             isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT,
             isOpenStaffManagerPinCodePopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_PINCODE,
+            isOpenStaffManagerDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_DISCOUNT
         });
     }
 
