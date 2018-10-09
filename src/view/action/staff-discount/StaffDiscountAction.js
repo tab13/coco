@@ -18,5 +18,10 @@ export default {
         return {
             type: StaffDiscountConstant.CHECK_MANAGER_PINCODE_ERROR
         }
+    },
+    resetCheckManagerPinCode: () => {
+        return {
+            type: StaffDiscountConstant.RESET_CHECK_MANAGER_PINCODE
+        }
     }
 }

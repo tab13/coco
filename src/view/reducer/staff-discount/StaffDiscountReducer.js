@@ -19,6 +19,11 @@ const staffDiscountReducer = function (state = initialState, action) {
             return {
                 ...state
             };
+        case StaffDiscountConstant.RESET_CHECK_MANAGER_PINCODE:
+            state = initialState;
+            return {
+                ...state
+            }
         default:
             return state;
     }

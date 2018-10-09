@@ -11,6 +11,7 @@ import $ from "jquery";
 import StaffDiscountService from "../../../../service/staff-discount/StaffDiscountService";
 import CurrencyHelper from "../../../../helper/CurrencyHelper";
 import StaffDiscountGlobal from "../../../../service/staff-discount/StaffDiscountGlobal";
+import StaffDiscountAction from "../../../action/staff-discount/StaffDiscountAction";
 
 export class StaffManagerDiscountPopupComponent extends CoreComponent {
     static className = 'StaffManagerDiscountPopupComponent';
@@ -80,6 +81,7 @@ export class StaffManagerDiscountPopupComponent extends CoreComponent {
      * cancel popup
      */
     cancelPopup() {
+        this.props.actions.resetCheckManagerPinCode();
         this.props.showPopup();
     }
 
@@ -269,7 +271,8 @@ export class StaffManagerDiscountPopupContainer extends CoreContainer {
         return {
             actions: {
                 setQuote: (quote) => dispatch(QuoteAction.setQuote(quote)),
-                updateCustomPriceCartItem: (item, customPrice, reason) => dispatch(QuoteAction.updateCustomPriceCartItem(item, customPrice, reason))
+                updateCustomPriceCartItem: (item, customPrice, reason) => dispatch(QuoteAction.updateCustomPriceCartItem(item, customPrice, reason)),
+                resetCheckManagerPinCode: () => dispatch(StaffDiscountAction.resetCheckManagerPinCode())
             }
         }
     }

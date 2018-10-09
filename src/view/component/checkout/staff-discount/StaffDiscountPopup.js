@@ -36,7 +36,6 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             isOpenStaffDiscountPopup: false,
             isOpenStaffManagerDiscountPopup: false,
             staff_discount: 0,
-            manager_discount: 0,
             max_min_staff_discount: {},
             discount_apply: 0,
             total_amount: 0,
@@ -70,13 +69,11 @@ export class StaffDiscountPopupComponent extends CoreComponent {
 
 
         let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(total_amount_to_get_discount));
-        let manager_discount = parseFloat(StaffDiscountService.getConfigManagerDiscount());
 
         let max_min_staff_discount = StaffDiscountService.discountRangeForStaffDiscount(nextProps.quote, staff_discount);
 
         this.setState({
             staff_discount: staff_discount,
-            manager_discount: manager_discount,
             max_min_staff_discount: max_min_staff_discount,
             discount_apply: staff_discount_amount,
             total_amount: total_amount,
@@ -95,15 +92,9 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             isOpenStaffDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_DISCOUNT,
             isOpenStaffManagerDiscountPopup: type === StaffDiscountConstant.POPUP_TYPE_STAFF_MANAGER_DISCOUNT
         });
-    }
-
-    /**
-     * Close staff manager discount popup
-     * @param type
-     */
-    showPopupManagerDiscount(type) {
-        this.showPopup(type);
-        this.cancelPopup();
+        if (type === undefined) {
+            this.props.showPopup();
+        }
     }
 
     /**
@@ -361,7 +352,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                 {
                     <StaffManagerDiscountPopupComponent isOpenStaffManagerDiscountPopup={this.state.isOpenStaffManagerDiscountPopup}
                                                         quote={quote}
-                                                        showPopup={(type) => this.showPopupManagerDiscount(type)}
+                                                        showPopup={(type) => this.showPopup(type)}
                     />
                 }
             </Fragment>

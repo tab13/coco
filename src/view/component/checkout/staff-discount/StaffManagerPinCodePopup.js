@@ -34,7 +34,7 @@ export class StaffManagerPinCodePopupComponent extends CoreComponent{
         this.setState({
             isOpenStaffManagerPinCodePopup: nextProps.isOpenStaffManagerPinCodePopup
         });
-        if (this.state.isOpenStaffManagerPinCodePopup) {
+        if (this.state.isOpenStaffManagerPinCodePopup ) {
             if (!nextProps.connection) {
 
             } else {
