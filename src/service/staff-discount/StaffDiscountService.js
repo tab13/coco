@@ -5,7 +5,7 @@ import ConfigHelper from "../../helper/ConfigHelper";
 import CurrencyHelper from "../../helper/CurrencyHelper";
 import StaffDiscountResourceModel from '../../resource-model/staff-discount/StaffDiscountResourceModel';
 
-export class StaffDiscountService extends CoreService{
+export class StaffDiscountService extends CoreService {
     static className = 'StaffDiscountService';
     resourceModel = StaffDiscountResourceModel;
 
@@ -22,7 +22,7 @@ export class StaffDiscountService extends CoreService{
     getTotalPriceOfProductInCart(quote) {
         let itemPriceTotal = 0;
         quote.items.map(item => {
-            itemPriceTotal = NumberHelper.addNumber(itemPriceTotal,item.product.price * item.qty);
+            itemPriceTotal = NumberHelper.addNumber(itemPriceTotal, item.product.price * item.qty);
         });
         return itemPriceTotal;
     }
@@ -36,7 +36,7 @@ export class StaffDiscountService extends CoreService{
 
         let staff_discount = ConfigHelper.getConfig('webpos/discount_configuration/staff_discount/discount_structure');
         if (staff_discount.length > 0) {
-            for (let i=0; i < staff_discount.length; i++) {
+            for (let i = 0; i < staff_discount.length; i++) {
                 console.log(JSON.parse(staff_discount[i]));
             }
         }
@@ -61,7 +61,7 @@ export class StaffDiscountService extends CoreService{
         let staff_discount = 0;
         let staff_discount_config = ConfigHelper.getConfig('webpos/discount_configuration/staff_discount/discount_structure');
         if (staff_discount_config.length > 0) {
-            for (let i=0; i < staff_discount_config.length; i++) {
+            for (let i = 0; i < staff_discount_config.length; i++) {
                 let discount = JSON.parse(staff_discount_config[i]);
                 if (parseFloat(totalAmount) >= parseFloat(discount.min_order_total)) {
                     if (parseFloat(staff_discount) < parseFloat(discount.rate)) {
@@ -72,6 +72,7 @@ export class StaffDiscountService extends CoreService{
         }
         return staff_discount;
     }
+
     /**
      * Get total original price of products in cart after discount
      *
@@ -103,14 +104,18 @@ export class StaffDiscountService extends CoreService{
                     // min_discount = 0;
                 }
                 // if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
-                if (item.product.special_price) {
-                    if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
-                        max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
-                    } else {
-                        max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
-                    }
+                if (item.product.item_product_status == 'dropship') {
+                    max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
                 } else {
-                    max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    if (item.product.special_price) {
+                        if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                            max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                        } else {
+                            max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                        }
+                    } else {
+                        max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    }
                 }
             })
         }
@@ -141,14 +146,18 @@ export class StaffDiscountService extends CoreService{
                     min_discount = 0;
                 }
 
-                if (item.product.special_price) {
-                    if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
-                        staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
-                    } else {
-                        staff_discount_apply = staff_discount_apply + min_discount
-                    }
+                if (item.product.item_product_status == 'dropship') {
+                    staff_discount_apply = staff_discount_apply + min_discount;
                 } else {
-                    staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    if (item.product.special_price) {
+                        if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                            staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                        } else {
+                            staff_discount_apply = staff_discount_apply + min_discount
+                        }
+                    } else {
+                        staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    }
                 }
 
                 // if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
@@ -195,14 +204,18 @@ export class StaffDiscountService extends CoreService{
 
             items.map(function (item) {
                 let current_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (item.product.special_price) {
-                    if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
-                        total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
-                    } else {
-                        total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
-                    }
+                if (item.product.item_product_status == 'dropship') {
+                    total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
                 } else {
-                    total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                    if (item.product.special_price) {
+                        if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                            total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                        } else {
+                            total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                        }
+                    } else {
+                        total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                    }
                 }
 
             });
@@ -233,15 +246,20 @@ export class StaffDiscountService extends CoreService{
             // })
             items.map(function (item) {
                 let current_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (item.product.special_price) {
-                    if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) *100)) {
-                        total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
-                    } else {
-                    }
-                } else {
-                    total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
-                }
 
+                if (item.product.item_product_status == 'dropship') {
+                    total_amount = total_amount - (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty) + current_discount;
+                } else {
+
+                    if (item.product.special_price) {
+                        if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                            total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                        } else {
+                        }
+                    } else {
+                        total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                    }
+                }
             });
         }
         return total_amount;
@@ -255,16 +273,19 @@ export class StaffDiscountService extends CoreService{
      */
     getItemPriceAfterDiscount(item, new_discount) {
         let new_price = false;
-        if (item.product.special_price) {
-            if (parseFloat(new_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
-                new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
-            } else {
-                new_price = item.product.special_price;
-            }
+        if (item.product.item_product_status == 'dropship') {
+            new_price = item.price;
         } else {
-            new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+            if (item.product.special_price) {
+                if (parseFloat(new_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                    new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+                } else {
+                    new_price = item.product.special_price;
+                }
+            } else {
+                new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+            }
         }
-
         return new_price;
     }
 
