@@ -54,7 +54,8 @@ export class QuoteService extends AbstractQuoteService {
         staff_discount: {
             manager_discount_applied: 0,
             staff_discount_applied: 0,
-            type: ''
+            type: '',
+            total_amount: 0
         }
     };
 

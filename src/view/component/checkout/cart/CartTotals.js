@@ -258,6 +258,51 @@ export class CartTotalsComponent extends CoreComponent {
             />
         } else {
             let displayValue = CurrencyHelper.format(Math.abs(total.value), null, null);
+            let self = this;
+            // check to remove staff discount
+            let {quote} = this.props;
+            if ((parseFloat(StaffDiscountService.getTotalAmountToGetDiscount(quote)) / parseFloat(quote.staff_discount.total_amount)) * 100 < 97.5) {
+                let items = quote.items;
+                items.map(function (item) {
+                    let new_price = StaffDiscountService.removeStaffDiscount(item);
+                    if (new_price) {
+                        // // self.props.dispatch(QuoteAction.updateCustomPriceCartItem(item, new_price, ''))
+                        // console.log(self.props);
+                        self.props.actions.updateCustomPriceItem(item, new_price, '');
+                    }
+                });
+                quote.staff_discount.staff_discount_applied = 0;
+                quote.staff_discount.manager_discount_applied = 0;
+                quote.staff_discount.type = '';
+                quote.staff_discount.total_amount = 0;
+                self.props.actions.setQuote(quote);
+            } else {
+                if ((parseFloat(StaffDiscountService.getTotalAmountToGetDiscount(quote)) > parseFloat(quote.staff_discount.total_amount))) {
+                    if (quote.staff_discount.type == 'staff' || quote.staff_discount.type == 'manager') {
+                        let discount_value = 0;
+                        if (quote.staff_discount.type == 'staff') {
+                            discount_value = quote.staff_discount.staff_discount_applied;
+                        } else {
+                            discount_value = quote.staff_discount.manager_discount_applied;
+                        }
+
+                        let items = quote.items;
+
+                        items.map(function (item) {
+                            let new_price = StaffDiscountService.getItemPriceAfterDiscount(item, discount_value);
+                            if (new_price) {
+                                // // self.props.dispatch(QuoteAction.updateCustomPriceCartItem(item, new_price, ''))
+                                // console.log(self.props);
+                                self.props.actions.updateCustomPriceItem(item, new_price, '');
+                            }
+                        });
+                        quote.staff_discount.total_amount = StaffDiscountService.getTotalAmountToGetDiscount(quote);;
+                        self.props.actions.setQuote(quote);
+                    }
+                }
+            }
+
+
             return (
                 <Fragment key={total.code}>
                     <li className={total.code}>
@@ -341,7 +386,8 @@ export class CartTotalsContainer extends CoreContainer {
     static mapDispatch(dispatch) {
         return {
             actions: {
-                setQuote: (quote) => dispatch(QuoteAction.setQuote(quote))
+                setQuote: (quote) => dispatch(QuoteAction.setQuote(quote)),
+                updateCustomPriceItem: (item, new_price, reason) => dispatch(QuoteAction.updateCustomPriceCartItem(item, new_price, reason))
             }
         }
     }

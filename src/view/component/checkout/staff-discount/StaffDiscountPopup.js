@@ -72,7 +72,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         let staff_discount = parseFloat(StaffDiscountService.getMaxStaffDiscountByAmount(total_amount_to_get_discount));
 
         let max_min_staff_discount = StaffDiscountService.discountRangeForStaffDiscount(nextProps.quote, staff_discount);
-
+        console.log(nextProps.quote);
         this.setState({
             staff_discount: staff_discount,
             max_min_staff_discount: max_min_staff_discount,
@@ -121,6 +121,8 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         });
         quote.staff_discount.staff_discount_applied = staff_discount;
         quote.staff_discount.manager_discount_applied = 0;
+        quote.staff_discount.type = 'staff';
+        quote.staff_discount.total_amount = StaffDiscountService.getTotalAmountToGetDiscount(quote);
         this.props.actions.setQuote(quote);
         this.props.showPopup();
     }
@@ -290,7 +292,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                 </td>
                             </tr>
                             <tr className="percentage-discount">
-                                <td className="block-title">{this.props.t('Discount')} 0% - {staff_discount}%</td>
+                                        <td className="block-title">{this.props.t('Discount')} 0% - {staff_discount}%</td>
                                 <td className="block-content">
                                     <input
                                         id='staff_discount_percent'

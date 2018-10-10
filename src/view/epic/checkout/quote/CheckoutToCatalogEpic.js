@@ -12,6 +12,7 @@ export default function CheckoutToCatalogEpic(action$, store) {
     return action$.ofType(CheckoutConstant.CHECKOUT_TO_CATALOG)
         .mergeMap(() => {
                 try {
+                    return Observable.empty();
                     let quote = QuoteService.collectTotals({
                         ...store.getState().core.checkout.quote, valid_salesrule: null, coupon_code: null
                     });

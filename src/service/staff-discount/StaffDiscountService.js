@@ -4,6 +4,7 @@ import ServiceFactory from "../../framework/factory/ServiceFactory";
 import ConfigHelper from "../../helper/ConfigHelper";
 import CurrencyHelper from "../../helper/CurrencyHelper";
 import StaffDiscountResourceModel from '../../resource-model/staff-discount/StaffDiscountResourceModel';
+import QuoteAction from "../../view/action/checkout/QuoteAction";
 
 export class StaffDiscountService extends CoreService {
     static className = 'StaffDiscountService';
@@ -96,26 +97,33 @@ export class StaffDiscountService extends CoreService {
 
         if (items.length > 0) {
             items.map(function (item) {
-                // min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (item.product.special_price) {
-                    min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
-                } else {
-                    // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                    // min_discount = 0;
-                }
+                min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                // if (item.product.special_price) {
+                //     min_discount = min_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                // } else {
+                // }
                 // if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
                 if (item.product.item_product_status == 'dropship') {
-                    max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                    max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
                 } else {
-                    if (item.product.special_price) {
-                        if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
-                            max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
-                        } else {
-                            max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
-                        }
-                    } else {
+                    //tinh theo price dc discount
+                    if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) * 100)) {
                         max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    } else {
+                        max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
                     }
+
+
+                    //tinh theo special price
+                    // if (item.product.special_price) {
+                    //     if (parseFloat(max_staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                    //         max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    //     } else {
+                    //         max_discount = max_discount + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                    //     }
+                    // } else {
+                    //     max_discount = max_discount + parseFloat((max_staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    // }
                 }
             })
         }
@@ -138,26 +146,32 @@ export class StaffDiscountService extends CoreService {
         let min_discount = 0;
         if (items.length > 0) {
             items.map(function (item) {
-                // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                if (item.product.special_price) {
-                    min_discount = (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
-                } else {
-                    // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
-                    min_discount = 0;
-                }
+                min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                // if (item.product.special_price) {
+                //     min_discount = (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                // } else {
+                //     // min_discount = (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
+                //     min_discount = 0;
+                // }
 
                 if (item.product.item_product_status == 'dropship') {
                     staff_discount_apply = staff_discount_apply + min_discount;
                 } else {
-                    if (item.product.special_price) {
-                        if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
-                            staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
-                        } else {
-                            staff_discount_apply = staff_discount_apply + min_discount
-                        }
-                    } else {
+                    if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) * 100)) {
                         staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    } else {
+                        staff_discount_apply = staff_discount_apply + min_discount
                     }
+                    //tinh theo special price
+                    // if (item.product.special_price) {
+                    //     if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                    //         staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    //     } else {
+                    //         staff_discount_apply = staff_discount_apply + min_discount
+                    //     }
+                    // } else {
+                    //     staff_discount_apply = staff_discount_apply + parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty);
+                    // }
                 }
 
                 // if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) *100)) {
@@ -207,15 +221,23 @@ export class StaffDiscountService extends CoreService {
                 if (item.product.item_product_status == 'dropship') {
                     total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
                 } else {
-                    if (item.product.special_price) {
-                        if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
-                            total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
-                        } else {
-                            total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
-                        }
-                    } else {
+
+                    if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) * 100)) {
                         total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                    } else {
+                        total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty);
                     }
+
+                    //tinh theo special price
+                    // if (item.product.special_price) {
+                    //     if (parseFloat(discount_avarage_percent) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                    //         total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                    //     } else {
+                    //         total_discount_greater_than_avg = total_discount_greater_than_avg + (parseFloat(item.original_price) - parseFloat(item.product.special_price)) * parseFloat(item.qty);
+                    //     }
+                    // } else {
+                    //     total_item_less_than_avg = total_item_less_than_avg + parseFloat(item.original_price) * parseFloat(item.qty);
+                    // }
                 }
 
             });
@@ -250,15 +272,20 @@ export class StaffDiscountService extends CoreService {
                 if (item.product.item_product_status == 'dropship') {
                     total_amount = total_amount - (parseFloat(item.original_price) - parseFloat(item.price)) * parseFloat(item.qty) + current_discount;
                 } else {
-
-                    if (item.product.special_price) {
-                        if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
-                            total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
-                        } else {
-                        }
-                    } else {
+                    if (parseFloat(staff_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) * 100)) {
                         total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                    } else {
+                        // total_amount = total_amount + current_discount;
                     }
+                    //tinh theo special price
+                    // if (item.product.special_price) {
+                    //     if (parseFloat(staff_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+                    //         total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                    //     } else {
+                    //     }
+                    // } else {
+                    //     total_amount = total_amount - parseFloat((staff_discount / 100) * parseFloat(item.original_price)) * parseFloat(item.qty) + current_discount;
+                    // }
                 }
             });
         }
@@ -276,15 +303,25 @@ export class StaffDiscountService extends CoreService {
         if (item.product.item_product_status == 'dropship') {
             new_price = item.price;
         } else {
-            if (item.product.special_price) {
-                if (parseFloat(new_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
-                    new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
-                } else {
-                    new_price = item.product.special_price;
-                }
-            } else {
+            if (parseFloat(new_discount) > ((1 - (parseFloat(item.price) / parseFloat(item.original_price))) * 100)) {
                 new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+            } else {
+                new_price = item.price;
             }
+
+            //tinh theo special price
+            // if (item.product.special_price) {
+            //     if (parseFloat(new_discount) > ((1 - (parseFloat(item.product.special_price) / parseFloat(item.original_price))) * 100)) {
+            //         new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+            //     } else {
+            //         new_price = item.product.special_price;
+            //     }
+            // } else {
+            //     new_price = (1 - parseFloat(new_discount) / 100) * parseFloat(item.original_price);
+            // }
+        }
+        if (parseFloat(new_price) == parseFloat(item.price)) {
+            return false;
         }
         return new_price;
     }
@@ -299,13 +336,59 @@ export class StaffDiscountService extends CoreService {
         items.map(function (item) {
             let product = item.product;
             if (product.special_price) {
-                total_amount = total_amount + parseFloat(product.special_price) - parseFloat(item.price);
+                //total_amount = total_amount + parseFloat(product.special_price) - parseFloat(item.price);
             } else {
                 total_amount = total_amount + parseFloat(item.original_price) - parseFloat(item.price);
             }
         });
 
         return total_amount;
+    }
+
+    // removeStaffDiscount(quote) {
+    //     let items = quote.items;
+    //     console.log(this.props);
+    //     items.map(function (item) {
+    //         let new_price = false;
+    //         if (item.product.item_product_status == 'dropship') {
+    //             new_price = item.price;
+    //         } else {
+    //             if (item.product.special_price) {
+    //                 new_price = item.product.special_price;
+    //             } else {
+    //                 new_price = item.original_price;
+    //             }
+    //         }
+    //         if (new_price) {
+    //             QuoteAction.updateCustomPriceCartItem(item, new_price, '');
+    //         }
+    //     });
+    // }
+
+    /**
+     * remove staff disscount when apply < 97.5%
+     * @param item
+     * @returns {boolean}
+     */
+    removeStaffDiscount(item) {
+        let new_price = false;
+        if (item.product.item_product_status == 'dropship') {
+            new_price = item.price;
+        } else {
+            if (item.product.special_price) {
+                new_price = item.product.special_price;
+            } else {
+                new_price = item.original_price;
+            }
+        }
+        if (parseFloat(new_price) == parseFloat(item.price)) {
+            return false;
+        }
+        // if (new_price) {
+        //     QuoteAction.updateCustomPriceCartItem(item, new_price, '');
+        // }
+
+        return new_price;
     }
 }
 
