@@ -22,6 +22,8 @@ import GiftcardHelper from "../../../../helper/GiftcardHelper";
 import GiftcardForm from "./totals/GiftcardForm";
 import NumberHelper from "../../../../helper/NumberHelper";
 import StaffDiscountComponent from "../staff-discount/StaffDiscount";
+import StaffDiscountService from "../../../../service/staff-discount/StaffDiscountService";
+import StaffDiscountGlobal from "../../../../service/staff-discount/StaffDiscountGlobal";
 
 export class CartTotalsComponent extends CoreComponent {
     static className = 'CartTotalsComponent';
@@ -256,11 +258,22 @@ export class CartTotalsComponent extends CoreComponent {
             />
         } else {
             let displayValue = CurrencyHelper.format(Math.abs(total.value), null, null);
+            console.log(StaffDiscountGlobal.manager_discount_applied + ' : ' + StaffDiscountGlobal.staff_discount_applied);
             return (
                 <Fragment key={total.code}>
                     <li className={total.code}>
                         <span className="mark">{total.title}</span>
-                        <span className="amount">{displayValue}</span>
+                        {/* COCO-CUSTOMIZE */}
+                        { total.code === 'grand_total' ?
+                            <div>
+                                <span className="amount">{displayValue}</span>
+                                {
+                                    (StaffDiscountGlobal.manager_discount_applied > 0 || StaffDiscountGlobal.staff_discount_applied > 0) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountWhenApplyDiscount(this.props.quote, 0))}</span> : ''
+                                }
+                            </div>
+                            :
+                            <span className="amount">{displayValue}</span>
+                        }
                     </li>
                 </Fragment>
             )

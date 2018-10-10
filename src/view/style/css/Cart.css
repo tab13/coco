@@ -353,6 +353,22 @@
     padding-left: 15px;
 }
 
+/* COCO-CUSTOMIZE */
+.cart-totals .grand_total .amount {
+    float: left;
+}
+
+.cart-totals .grand_total .before-staff-discount {
+    text-decoration: line-through;
+    color: #797979;
+    display: table-cell;
+    vertical-align: top;
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+    padding-left: 15px;
+}
+
 .cart-totals li {
     display: table;
     width: 100%;

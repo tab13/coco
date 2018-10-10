@@ -108,6 +108,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
         // event.preventDefault();
         let staff_discount = this.refs.staff_discount_percent.value;
         StaffDiscountGlobal.staff_discount_applied = staff_discount;
+        StaffDiscountGlobal.manager_discount_applied = 0;
         let self = this;
         let {quote} = this.props;
         let items = quote.items;
