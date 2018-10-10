@@ -352,6 +352,12 @@
     white-space: nowrap;
     text-align: right;
 }
+
+/* COCO-CUSTOMIZE */
+.wrapper-order-right .item-ordered .item-order .before-staff-discount{
+    text-decoration: line-through;
+}
+
 .wrapper-order-right .item-ordered .item-order .origin-price {
    color: #797979;
 }
@@ -454,6 +460,14 @@
     white-space: nowrap;
     text-align: right;
 }
+
+/* COCO-CUSTOMIZE */
+.wrapper-order-right .order-total .value .before-staff-discount {
+    float: left;
+    text-decoration: line-through;
+    color: #797979;
+}
+
 .wrapper-order-right .order-total ul + ul {
     border-top: solid 1px #dfe1e4;
     padding-top: 10px;

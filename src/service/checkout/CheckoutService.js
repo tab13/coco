@@ -247,6 +247,9 @@ export class CheckoutService extends CoreService {
         order.magestore_base_discount = quote.magestore_base_discount;
         order.magestore_discount = quote.magestore_discount;
 
+        // COCO-CUSTOMIZE
+        order.staff_discount = quote.staff_discount;
+
         return order;
     }
 
@@ -434,7 +437,10 @@ export class CheckoutService extends CoreService {
                 magestore_discount: item.magestore_discount,
 
                 /** Custom price reason */
-                os_pos_custom_price_reason: item.os_pos_custom_price_reason
+                os_pos_custom_price_reason: item.os_pos_custom_price_reason,
+
+                // COCO-CUSTOMIZE
+                product: item.product
             }
         });
     }

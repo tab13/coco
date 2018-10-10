@@ -267,7 +267,7 @@ export class CartTotalsComponent extends CoreComponent {
                             <div>
                                 <span className="amount">{displayValue}</span>
                                 {
-                                    (this.props.quote.staff_discount.manager_discount_applied > 0 || this.props.quote.staff_discount.staff_discount_applied > 0) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountWhenApplyDiscount(this.props.quote, 0))}</span> : ''
+                                    (this.props.quote.staff_discount.manager_discount_applied > 0 || this.props.quote.staff_discount.staff_discount_applied > 0) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountToGetDiscount(this.props.quote))}</span> : ''
                                 }
                             </div>
                             :

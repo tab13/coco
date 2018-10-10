@@ -32,6 +32,7 @@ import LocationService from "../../../service/LocationService";
 import i18n from "../../../config/i18n";
 import {toast} from "react-toastify";
 import OrderGiftCardPopupService from "../../../service/sales/order/order-gift-card/OrderGiftCardPopupService";
+import StaffDiscountService from "../../../service/staff-discount/StaffDiscountService";
 
 
 export class OrderDetail extends CoreComponent {
@@ -420,9 +421,14 @@ export class OrderDetail extends CoreComponent {
                                                     }
                                                     <li>
                                                         <span className="title">{this.props.t('Grand Total')}</span>
-                                                        <span className="value">
-                                                            {OrderHelper.formatPrice(order.grand_total, order)}
-                                                        </span>
+                                                        {/* COCO-CUSTOMIZE */}
+                                                            <span className="value">
+                                                                <span>{OrderHelper.formatPrice(order.grand_total, order)}</span>
+                                                                {
+                                                                    (order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0) ? <span className="before-staff-discount">{OrderHelper.formatPrice(StaffDiscountService.getTotalAmountToGetDiscount(order))}</span> : ''
+                                                                }
+                                                            </span>
+
                                                     </li>
                                                     {
                                                         isEnabledRewardPoint && order.rewardpoints_earn ?

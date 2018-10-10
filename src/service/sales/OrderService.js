@@ -315,7 +315,22 @@ export class OrderService extends AbstractOrderService {
         return OrderHelper.formatPrice(originalPrice, order);
     }
 
-
+    /**
+     * COCO-CUSTOMIZE
+     * Get original price in order item
+     * @param item
+     * @param order
+     * @returns {*|number}
+     */
+    getItemOriginalPrice(item, order) {
+        let originalPrice = 0;
+        if (TaxHelper.orderDisplayPriceIncludeTax()) {
+            originalPrice = item.pos_original_price_incl_tax;
+        } else {
+            originalPrice = item.pos_original_price_excl_tax;
+        }
+        return originalPrice;
+    }
 
     /**
      * Get price display in order item
