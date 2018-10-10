@@ -53,7 +53,8 @@ export class QuoteService extends AbstractQuoteService {
         // COCO-CUSTOMIZE
         staff_discount: {
             manager_discount_applied: 0,
-            staff_discount_applied: 0
+            staff_discount_applied: 0,
+            type: ''
         }
     };
 
