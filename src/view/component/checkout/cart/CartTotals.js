@@ -258,7 +258,6 @@ export class CartTotalsComponent extends CoreComponent {
             />
         } else {
             let displayValue = CurrencyHelper.format(Math.abs(total.value), null, null);
-            console.log(StaffDiscountGlobal.manager_discount_applied + ' : ' + StaffDiscountGlobal.staff_discount_applied);
             return (
                 <Fragment key={total.code}>
                     <li className={total.code}>
@@ -268,7 +267,7 @@ export class CartTotalsComponent extends CoreComponent {
                             <div>
                                 <span className="amount">{displayValue}</span>
                                 {
-                                    (StaffDiscountGlobal.manager_discount_applied > 0 || StaffDiscountGlobal.staff_discount_applied > 0) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountWhenApplyDiscount(this.props.quote, 0))}</span> : ''
+                                    (this.props.quote.staff_discount.manager_discount_applied > 0 || this.props.quote.staff_discount.staff_discount_applied > 0) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountWhenApplyDiscount(this.props.quote, 0))}</span> : ''
                                 }
                             </div>
                             :

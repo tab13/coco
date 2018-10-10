@@ -49,7 +49,11 @@ export class QuoteService extends AbstractQuoteService {
         items: [],
         payments: [],
         addresses: [],
-        customer: null
+        customer: null,
+        staff_discount: {
+            manager_discount_applied: 0,
+            staff_discount_applied: 0
+        }
     };
 
     /**

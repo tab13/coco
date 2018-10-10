@@ -12,8 +12,9 @@ import StaffDiscountService from "../../../../service/staff-discount/StaffDiscou
 import StaffDiscountConstant from "../../../constant/StaffDiscountConstant";
 import StaffManagerPinCodePopupComponent from "./StaffManagerPinCodePopup";
 import CurrencyHelper from "../../../../helper/CurrencyHelper";
-import StaffDiscountGlobal from "../../../../service/staff-discount/StaffDiscountGlobal";
+// import StaffDiscountGlobal from "../../../../service/staff-discount/StaffDiscountGlobal";
 import StaffManagerDiscountPopupComponent from "./StaffManagerDiscountPopup";
+// import QuoteService from "../../../../service/checkout/QuoteService";
 
 export class StaffDiscountPopupComponent extends CoreComponent {
     static className = 'StaffDiscountPopupComponent';
@@ -59,7 +60,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
             isOpenStaffDiscountPopup: nextProps.isOpenStaffDiscountPopup
         });
 
-        let staff_discount_applied = StaffDiscountGlobal.staff_discount_applied;
+        let staff_discount_applied = nextProps.quote.staff_discount.staff_discount_applied;
         let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(nextProps.quote, staff_discount_applied);
 
         let staff_discount_amount = StaffDiscountService.getStaffDiscountAmountApply(nextProps.quote, staff_discount_applied);
@@ -107,8 +108,8 @@ export class StaffDiscountPopupComponent extends CoreComponent {
     confirmPopup() {
         // event.preventDefault();
         let staff_discount = this.refs.staff_discount_percent.value;
-        StaffDiscountGlobal.staff_discount_applied = staff_discount;
-        StaffDiscountGlobal.manager_discount_applied = 0;
+        // StaffDiscountGlobal.staff_discount_applied = staff_discount;
+        // StaffDiscountGlobal.manager_discount_applied = 0;
         let self = this;
         let {quote} = this.props;
         let items = quote.items;
@@ -118,6 +119,9 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                 self.props.actions.updateCustomPriceCartItem(item, new_price, 'Apply staff discount ' + staff_discount + '%' );
             }
         });
+        quote.staff_discount.staff_discount_applied = staff_discount;
+        quote.staff_discount.manager_discount_applied = 0;
+        this.props.actions.setQuote(quote);
         this.props.showPopup();
     }
 
@@ -291,7 +295,7 @@ export class StaffDiscountPopupComponent extends CoreComponent {
                                     <input
                                         id='staff_discount_percent'
                                         type="text"
-                                        defaultValue={StaffDiscountGlobal.staff_discount_applied}
+                                        defaultValue={quote.staff_discount.staff_discount_applied}
                                         ref="staff_discount_percent"
                                         onChange={(event) => this.onChangeStaffDiscountPercent(event)}
                                     />
