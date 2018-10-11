@@ -125,6 +125,18 @@ export class OrderItem extends CoreComponent {
 
     /**
      * COCO-CUSTOMIZE
+     * calculate row total without staff discount
+     *
+     * @param item
+     * @param order
+     * @returns {*}
+     */
+    calculateOriginalRowTotal(item, order) {
+        return OrderService.getNumberRowTotal(item, order) + ((OrderService.getItemOriginalPrice(item, order) - OrderService.getItemPrice(item, order)) * item.qty_ordered);
+    }
+
+    /**
+     * COCO-CUSTOMIZE
      * template
      * @returns {*}
      */
@@ -132,13 +144,15 @@ export class OrderItem extends CoreComponent {
         let {order, item} = this.props;
         let isHolded = (order.status === StatusConstant.STATUS_HOLDED);
 
-        let hasStaffDiscount = order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0;
+        let isAppliedStaffDiscount = order.staff_discount !== undefined && (item.product.item_product_status !== 'dropship') && (order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0) ;
         let staffDiscountAmount = 0;
-        if (order.staff_discount.manager_discount_applied > 0) {
-            staffDiscountAmount = parseFloat(order.staff_discount.manager_discount_applied);
-        }
-        if (order.staff_discount.staff_discount_applied > 0) {
-            staffDiscountAmount = parseFloat(order.staff_discount.staff_discount_applied);
+        if (isAppliedStaffDiscount) {
+            if (order.staff_discount.manager_discount_applied > 0) {
+                staffDiscountAmount = parseFloat(order.staff_discount.manager_discount_applied);
+            }
+            if (order.staff_discount.staff_discount_applied > 0) {
+                staffDiscountAmount = parseFloat(order.staff_discount.staff_discount_applied);
+            }
         }
 
         if (item.product_type === ProductTypeConstant.BUNDLE) {
@@ -178,15 +192,15 @@ export class OrderItem extends CoreComponent {
                                     <b>{OrderService.getRowTotal(item, order)}</b>
                                     <b>
                                         {
-                                            hasStaffDiscount ? ' / ' : ''
+                                            isAppliedStaffDiscount ? ' / ' : ''
                                         }
                                         {
-                                            hasStaffDiscount ? <b className="before-staff-discount">{OrderHelper.formatPrice((OrderService.getItemOriginalPrice(item, order) * item.qty_ordered),order)}</b> : ''
+                                            isAppliedStaffDiscount ? <b className="before-staff-discount">{OrderHelper.formatPrice(this.calculateOriginalRowTotal(item,order),order)}</b> : ''
                                         }
                                     </b>
                                 </div>
                                 {
-                                    hasStaffDiscount ?
+                                    isAppliedStaffDiscount ?
                                         '': this.displayOriginPrice(item) ?
                                         <div className="origin-price">
                                             {this.props.t("Origin Price: {{original_price}}", {original_price: OrderService.getItemDisplayOriginalPrice(item, order)})}
@@ -194,10 +208,10 @@ export class OrderItem extends CoreComponent {
                                 }
                                 <div>
                                     {
-                                        hasStaffDiscount ? this.props.t("Price")+':'+ OrderService.getItemDisplayPrice(item, order) + ' / ' : this.props.t("Price: {{price}}", {price: OrderService.getItemDisplayPrice(item, order)})
+                                        isAppliedStaffDiscount ? this.props.t("Price")+':'+ OrderService.getItemDisplayPrice(item, order) + ' / ' : this.props.t("Price: {{price}}", {price: OrderService.getItemDisplayPrice(item, order)})
                                     }
                                     {
-                                        hasStaffDiscount ? <span className="before-staff-discount">{OrderService.getItemDisplayOriginalPrice(item, order)}</span> : ''
+                                        isAppliedStaffDiscount ? <span className="before-staff-discount">{OrderService.getItemDisplayOriginalPrice(item, order)}</span> : ''
                                     }
                                 </div>
                                 <div>
@@ -220,7 +234,7 @@ export class OrderItem extends CoreComponent {
                                     !isHolded ?
                                         <div>
                                             {
-                                                hasStaffDiscount ?
+                                                isAppliedStaffDiscount ?
                                                     this.props.t("Discount") + ': ' + this.getDisplayPrice(this.calculateItemStaffDiscountAmount(item, order, staffDiscountAmount),order) : this.props.t("Discount: {{discount}}", {discount: this.getDisplayPrice(item.discount_amount, order)})
                                             }
                                         </div>
@@ -324,15 +338,15 @@ export class OrderItem extends CoreComponent {
                         <b>{OrderService.getRowTotal(item, order)}</b>
                         <b>
                             {
-                                hasStaffDiscount ? ' / ' : ''
+                                isAppliedStaffDiscount ? ' / ' : ''
                             }
                             {
-                                hasStaffDiscount ? <b className="before-staff-discount">{OrderHelper.formatPrice((OrderService.getItemOriginalPrice(item, order) * item.qty_ordered),order)}</b> : ''
+                                isAppliedStaffDiscount ? <b className="before-staff-discount">{OrderHelper.formatPrice(this.calculateOriginalRowTotal(item,order),order)}</b> : ''
                             }
                         </b>
                     </div>
                         {
-                            hasStaffDiscount ?
+                            isAppliedStaffDiscount ?
                                 '': this.displayOriginPrice(item) ?
                                 <div className="origin-price">
                                     {this.props.t("Origin Price: {{original_price}}", {original_price: OrderService.getItemDisplayOriginalPrice(item, order)})}
@@ -340,10 +354,10 @@ export class OrderItem extends CoreComponent {
                         }
                         <div>
                             {
-                                hasStaffDiscount ? this.props.t("Price")+':'+ OrderService.getItemDisplayPrice(item, order) + ' / ' : this.props.t("Price: {{price}}", {price: OrderService.getItemDisplayPrice(item, order)})
+                                isAppliedStaffDiscount ? this.props.t("Price")+':'+ OrderService.getItemDisplayPrice(item, order) + ' / ' : this.props.t("Price: {{price}}", {price: OrderService.getItemDisplayPrice(item, order)})
                             }
                             {
-                                hasStaffDiscount ? <span className="before-staff-discount">{OrderService.getItemDisplayOriginalPrice(item, order)}</span> : ''
+                                isAppliedStaffDiscount ? <span className="before-staff-discount">{OrderService.getItemDisplayOriginalPrice(item, order)}</span> : ''
                             }
                         </div>
                         <div>
@@ -366,7 +380,7 @@ export class OrderItem extends CoreComponent {
                             !isHolded ?
                                 <div>
                                     {
-                                        hasStaffDiscount ?
+                                        isAppliedStaffDiscount ?
                                             this.props.t("Discount") + ': ' + this.getDisplayPrice(this.calculateItemStaffDiscountAmount(item, order, staffDiscountAmount),order) : this.props.t("Discount: {{discount}}", {discount: this.getDisplayPrice(item.discount_amount, order)})
                                     }
                                 </div>

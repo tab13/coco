@@ -425,7 +425,7 @@ export class OrderDetail extends CoreComponent {
                                                             <span className="value">
                                                                 <span>{OrderHelper.formatPrice(order.grand_total, order)}</span>
                                                                 {
-                                                                    (order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0) ? <span className="before-staff-discount">{OrderHelper.formatPrice(StaffDiscountService.getTotalAmountToGetDiscount(order))}</span> : ''
+                                                                    (order.staff_discount !== undefined && (order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0)) ? <span className="before-staff-discount">{OrderHelper.formatPrice(StaffDiscountService.getTotalAmountToGetDiscount(order))}</span> : ''
                                                                 }
                                                             </span>
 

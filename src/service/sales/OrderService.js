@@ -300,6 +300,23 @@ export class OrderService extends AbstractOrderService {
     }
 
     /**
+     * COCO-CUSTOMIZE
+     * Get price display in order item
+     * @param item
+     * @param order
+     * @return {*}
+     */
+    getItemPrice(item, order) {
+        let price = 0;
+        if (TaxHelper.orderDisplayPriceIncludeTax()) {
+            price = item.price_incl_tax;
+        } else {
+            price = item.price;
+        }
+        return price;
+    }
+
+    /**
      * Get original price display in order item
      * @param item
      * @param order
@@ -347,6 +364,22 @@ export class OrderService extends AbstractOrderService {
         return OrderHelper.formatPrice(price, order);
     }
 
+
+    /**
+     * COCO-CUSTOMIZE
+     * Get price in order item
+     * @param item
+     * @param order
+     * @return {*}
+     */
+    getNumberRowTotal(item, order) {
+        let price = item.row_total;
+        price = NumberHelper.minusNumber(price, item.discount_amount);
+        price = NumberHelper.addNumber(price, item.tax_amount);
+        price = NumberHelper.addNumber(price, item.discount_tax_compensation_amount);
+        price = NumberHelper.addNumber(price, OrderWeeeDataService.getRowWeeeTaxInclTax(item, order));
+        return price;
+    }
 
     /**
      * Get display subtotal in order detail
