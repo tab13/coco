@@ -112,13 +112,34 @@ export class OrderItem extends CoreComponent {
 
     /**
      * COCO-CUSTOMIZE
+     * calculate staff discount on order item
+     *
+     * @param item
+     * @param order
+     * @param staffDiscountAmount
+     * @returns {*}
+     */
+    calculateItemStaffDiscountAmount(item, order, staffDiscountAmount) {
+        return ((OrderService.getItemOriginalPrice(item, order) * (staffDiscountAmount/100)) * item.qty_ordered) + item.discount_amount;
+    }
+
+    /**
+     * COCO-CUSTOMIZE
      * template
      * @returns {*}
      */
     template() {
         let {order, item} = this.props;
         let isHolded = (order.status === StatusConstant.STATUS_HOLDED);
+
         let hasStaffDiscount = order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0;
+        let staffDiscountAmount = 0;
+        if (order.staff_discount.manager_discount_applied > 0) {
+            staffDiscountAmount = parseFloat(order.staff_discount.manager_discount_applied);
+        }
+        if (order.staff_discount.staff_discount_applied > 0) {
+            staffDiscountAmount = parseFloat(order.staff_discount.staff_discount_applied);
+        }
 
         if (item.product_type === ProductTypeConstant.BUNDLE) {
             return  (
@@ -199,10 +220,8 @@ export class OrderItem extends CoreComponent {
                                     !isHolded ?
                                         <div>
                                             {
-                                                this.props.t(
-                                                    "Discount: {{discount}}",
-                                                    {discount: this.getDisplayPrice(item.discount_amount, order)}
-                                                )
+                                                hasStaffDiscount ?
+                                                    this.props.t("Discount") + ': ' + this.getDisplayPrice(this.calculateItemStaffDiscountAmount(item, order, staffDiscountAmount),order) : this.props.t("Discount: {{discount}}", {discount: this.getDisplayPrice(item.discount_amount, order)})
                                             }
                                         </div>
                                         :
@@ -347,10 +366,8 @@ export class OrderItem extends CoreComponent {
                             !isHolded ?
                                 <div>
                                     {
-                                        this.props.t(
-                                            "Discount: {{discount}}",
-                                            {discount: this.getDisplayPrice(item.discount_amount, order)}
-                                        )
+                                        hasStaffDiscount ?
+                                            this.props.t("Discount") + ': ' + this.getDisplayPrice(this.calculateItemStaffDiscountAmount(item, order, staffDiscountAmount),order) : this.props.t("Discount: {{discount}}", {discount: this.getDisplayPrice(item.discount_amount, order)})
                                     }
                                 </div>
                                 :
