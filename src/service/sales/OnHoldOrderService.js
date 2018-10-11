@@ -428,6 +428,8 @@ export class OnHoldOrderService extends AbstractOrderService {
                 quote = response.quote;
             }
         }
+        // COCO-CUSTOMIZE
+        quote.staff_discount = order.staff_discount;
         return quote;
     }
 
