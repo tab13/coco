@@ -30,6 +30,10 @@ export class CheckoutService extends CoreService {
      * @return {Promise<{entity_id: number}>}
      */
     async placeOrder(quote, additionalData = false) {
+        // COCO-CUSTOMIZE
+        if (typeof quote.staff_discount !== 'string') {
+            quote.staff_discount = JSON.stringify(quote.staff_discount);
+        }
         quote = cloneDeep(quote);
         QuoteService.placeOrderBefore(quote);
         let orderResource = this.getResourceModel(OrderResourceModel);
@@ -439,8 +443,6 @@ export class CheckoutService extends CoreService {
                 /** Custom price reason */
                 os_pos_custom_price_reason: item.os_pos_custom_price_reason,
 
-                // COCO-CUSTOMIZE
-                product: item.product
             }
         });
     }

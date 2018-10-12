@@ -30,6 +30,10 @@ export class OnHoldOrderService extends AbstractOrderService {
      * @return {Promise<{entity_id: number}>}
      */
     async holdOrder(quote) {
+        // COCO-CUSTOMIZE
+        if (typeof quote.staff_discount !== 'string') {
+            quote.staff_discount = JSON.stringify(quote.staff_discount);
+        }
         QuoteService.placeOrderBefore(quote);
         let order = CheckoutService.convertQuoteToOrder(quote);
 

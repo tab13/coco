@@ -277,6 +277,13 @@ export class OrderDetail extends CoreComponent {
         let customer_name = (order && order.customer_firstname && order.customer_lastname && !order.customer_is_guest) ?
             order.customer_firstname+' '+order.customer_lastname : this.props.t('Guest');
 
+        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
+        if (staffDiscount !== '') {
+            while(typeof staffDiscount === 'string'){
+                staffDiscount = JSON.parse(staffDiscount);
+            }
+        }
+
         return (
             <div className="wrapper-order-right">
                 <div className="block-title">{order ? order.increment_id : ''}</div>
@@ -425,7 +432,7 @@ export class OrderDetail extends CoreComponent {
                                                             <span className="value">
                                                                 <span>{OrderHelper.formatPrice(order.grand_total, order)}</span>
                                                                 {
-                                                                    (order.staff_discount !== undefined && (order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0)) ? <span className="before-staff-discount">{OrderHelper.formatPrice(StaffDiscountService.getTotalAmountToGetDiscount(order))}</span> : ''
+                                                                    (order.staff_discount !== undefined && (staffDiscount.manager_discount_applied > 0 || staffDiscount.staff_discount_applied > 0)) ? <span className="before-staff-discount">{OrderHelper.formatPrice(staffDiscount.total_amount)}</span> : ''
                                                                 }
                                                             </span>
 

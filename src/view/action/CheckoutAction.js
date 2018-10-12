@@ -8,6 +8,10 @@ export default {
      * @return {{type: string, quote: *, additionalData: *}}
      */
     placeOrder: (quote, additionalData) => {
+        // COCO-CUSTOMIZE
+        if (typeof quote.staff_discount !== 'string') {
+            quote.staff_discount = JSON.stringify(quote.staff_discount);
+        }
         return {
             type: CheckoutConstant.CHECK_OUT_PLACE_ORDER,
             quote: quote,

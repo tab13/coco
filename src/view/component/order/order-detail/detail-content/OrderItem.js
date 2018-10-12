@@ -144,14 +144,20 @@ export class OrderItem extends CoreComponent {
         let {order, item} = this.props;
         let isHolded = (order.status === StatusConstant.STATUS_HOLDED);
 
-        let isAppliedStaffDiscount = order.staff_discount !== undefined && (item.product.item_product_status !== 'dropship') && (order.staff_discount.manager_discount_applied > 0 || order.staff_discount.staff_discount_applied > 0) ;
+        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
+        if (staffDiscount !== '') {
+            while(typeof staffDiscount === 'string'){
+                staffDiscount = JSON.parse(staffDiscount);
+            }
+        }
+        let isAppliedStaffDiscount = staffDiscount !== '' && item.original_price !== item.price && (staffDiscount.manager_discount_applied > 0 || staffDiscount.staff_discount_applied > 0) ;
         let staffDiscountAmount = 0;
         if (isAppliedStaffDiscount) {
-            if (order.staff_discount.manager_discount_applied > 0) {
-                staffDiscountAmount = parseFloat(order.staff_discount.manager_discount_applied);
+            if (staffDiscount.manager_discount_applied > 0) {
+                staffDiscountAmount = parseFloat(staffDiscount.manager_discount_applied);
             }
-            if (order.staff_discount.staff_discount_applied > 0) {
-                staffDiscountAmount = parseFloat(order.staff_discount.staff_discount_applied);
+            if (staffDiscount.staff_discount_applied > 0) {
+                staffDiscountAmount = parseFloat(staffDiscount.staff_discount_applied);
             }
         }
 

@@ -7,6 +7,10 @@ export default {
      * @return {{type: string, quote: *}}
      */
     holdOrder: (quote) => {
+        // COCO-CUSTOMIZE
+        if (typeof quote.staff_discount !== 'string') {
+            quote.staff_discount = JSON.stringify(quote.staff_discount);
+        }
         return {
             type: OnHoldOrderConstant.HOLD_ORDER,
             quote: quote

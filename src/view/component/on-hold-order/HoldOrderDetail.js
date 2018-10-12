@@ -71,7 +71,14 @@ export class HoldOrderDetail extends CoreComponent {
         let created_at = order ?
             moment(DateTimeHelper.convertDatabaseDateTimeToLocalDate(order.created_at)).format('L LT') : "";
         let weeeTotal = order && order.items ? OrderWeeeDataService.getTotalAmounts(order.items, order) : "";
-        
+
+        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
+        if (staffDiscount !== '') {
+            while(typeof staffDiscount === 'string'){
+                staffDiscount = JSON.parse(staffDiscount);
+            }
+        }
+
         return (
             <div className="wrapper-order-right wrapper-onhold-details">
                 <div className="block-title">
@@ -156,7 +163,13 @@ export class HoldOrderDetail extends CoreComponent {
                                                     <li>
                                                         <span className="title">{this.props.t('Grand Total')}</span>
                                                         <span className="value">
-                                                            {OrderHelper.formatPrice(order.grand_total, order)}
+                                                            {/* COCO-CUSTOMIZE */}
+                                                            <span className="value">
+                                                                <span>{OrderHelper.formatPrice(order.grand_total, order)}</span>
+                                                                {
+                                                                    (order.staff_discount !== undefined && (staffDiscount.manager_discount_applied > 0 || staffDiscount.staff_discount_applied > 0)) ? <span className="before-staff-discount">{OrderHelper.formatPrice(staffDiscount.total_amount)}</span> : ''
+                                                                }
+                                                            </span>
                                                         </span>
                                                     </li>
                                                 </ul>
