@@ -183,6 +183,8 @@ export class CartItemComponent extends CoreComponent {
      * @returns {boolean}
      */
     canUseCustomPrice(item){
+        // COCO-CUSTOMIZE disable custom price
+        return false;
         let canUseCustomPrice = Permission.isAllowed(PermissionConstant.PERMISSION_CUSTOM_PRICE_ON_ITEM);
         if (canUseCustomPrice) {
             if (item.product_type === ProductTypeConstant.BUNDLE) {

@@ -158,6 +158,7 @@ export class StaffManagerDiscountPopupComponent extends CoreComponent {
         quote.staff_discount.manager_discount_applied = manager_discount;
         quote.staff_discount.type = 'manager';
         quote.staff_discount.total_amount = StaffDiscountService.getTotalAmountToGetDiscount(quote);
+        this.props.actions.setQuote(quote);
         this.cancelPopup();
     }
 
