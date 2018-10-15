@@ -144,12 +144,8 @@ export class OrderItem extends CoreComponent {
         let {order, item} = this.props;
         let isHolded = (order.status === StatusConstant.STATUS_HOLDED);
 
-        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
-        if (staffDiscount !== '') {
-            while(typeof staffDiscount === 'string'){
-                staffDiscount = JSON.parse(staffDiscount);
-            }
-        }
+        // COCO-CUSTOMIZE convert string to json
+        let staffDiscount = StaffDiscountService.convertStaffDiscountToJson(order);
         let isAppliedStaffDiscount = staffDiscount !== '' && item.original_price !== item.price && (staffDiscount.manager_discount_applied > 0 || staffDiscount.staff_discount_applied > 0) ;
         let staffDiscountAmount = 0;
         if (isAppliedStaffDiscount) {

@@ -15,6 +15,7 @@ import OrderHelper from "../../../helper/OrderHelper";
 import OnHoldOrderAction from "../../action/OnHoldOrderAction";
 import TaxHelper from "../../../helper/TaxHelper";
 import OrderWeeeDataService from "../../../service/weee/OrderWeeeDataService";
+import StaffDiscountService from "../../../service/staff-discount/StaffDiscountService";
 
 export class HoldOrderDetail extends CoreComponent {
     static className = 'HoldOrderDetail';
@@ -72,12 +73,8 @@ export class HoldOrderDetail extends CoreComponent {
             moment(DateTimeHelper.convertDatabaseDateTimeToLocalDate(order.created_at)).format('L LT') : "";
         let weeeTotal = order && order.items ? OrderWeeeDataService.getTotalAmounts(order.items, order) : "";
 
-        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
-        if (staffDiscount !== '') {
-            while(typeof staffDiscount === 'string'){
-                staffDiscount = JSON.parse(staffDiscount);
-            }
-        }
+        // COCO-CUSTOMIZE convert string to json
+        let staffDiscount = StaffDiscountService.convertStaffDiscountToJson(order);
 
         return (
             <div className="wrapper-order-right wrapper-onhold-details">

@@ -302,6 +302,8 @@ export class CartTotalsComponent extends CoreComponent {
                 }
             }
 
+            // COCO-CUSTOMIZE convert string to json
+            let staffDiscount = StaffDiscountService.convertStaffDiscountToJson(this.props.quote);
 
             return (
                 <Fragment key={total.code}>
@@ -312,7 +314,7 @@ export class CartTotalsComponent extends CoreComponent {
                             <div>
                                 <span className="amount">{displayValue}</span>
                                 {
-                                    (this.props.quote.staff_discount.manager_discount_applied > 0 || this.props.quote.staff_discount.staff_discount_applied > 0) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountToGetDiscount(this.props.quote))}</span> : ''
+                                    ((staffDiscount !== '') && (staffDiscount.manager_discount_applied > 0 || staffDiscount.staff_discount_applied > 0)) ? <span className="before-staff-discount">{CurrencyHelper.format(StaffDiscountService.getTotalAmountToGetDiscount(this.props.quote))}</span> : ''
                                 }
                             </div>
                             :

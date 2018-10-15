@@ -53,7 +53,11 @@ export class StaffManagerDiscountPopupComponent extends CoreComponent {
         this.setState({
             isOpenStaffManagerDiscountPopup: nextProps.isOpenStaffManagerDiscountPopup
         });
-        let manager_discount_applied = nextProps.quote.staff_discount.manager_discount_applied;
+
+        // COCO-CUSTOMIZE convert string to json
+        let staffDiscount = StaffDiscountService.convertStaffDiscountToJson(nextProps.quote);
+
+        let manager_discount_applied = staffDiscount.manager_discount_applied;
         let total_amount = StaffDiscountService.getTotalAmountWhenApplyDiscount(nextProps.quote, manager_discount_applied);
         let manager_discount_amount = StaffDiscountService.getStaffDiscountAmountApply(nextProps.quote, manager_discount_applied);
         let manager_discount = parseFloat(StaffDiscountService.getConfigManagerDiscount());
@@ -179,6 +183,10 @@ export class StaffManagerDiscountPopupComponent extends CoreComponent {
                 this.scrollbar = null;
             }
         }
+
+        // COCO-CUSTOMIZE convert string to json
+        let staffDiscount = StaffDiscountService.convertStaffDiscountToJson(quote);
+
         return (
             <Fragment>
                 <Modal
@@ -202,7 +210,7 @@ export class StaffManagerDiscountPopupComponent extends CoreComponent {
                                         id='manager_discount_percent'
                                         type="text"
                                         // value={this.state.manager_discount_percent}
-                                        defaultValue={quote.staff_discount.manager_discount_applied}
+                                        defaultValue={staffDiscount.manager_discount_applied}
                                         ref="manager_discount_percent"
                                         onChange={(event) => this.onChangeManagerDiscountPercent(event)}
                                     />

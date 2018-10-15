@@ -277,12 +277,8 @@ export class OrderDetail extends CoreComponent {
         let customer_name = (order && order.customer_firstname && order.customer_lastname && !order.customer_is_guest) ?
             order.customer_firstname+' '+order.customer_lastname : this.props.t('Guest');
 
-        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
-        if (staffDiscount !== '') {
-            while(typeof staffDiscount === 'string'){
-                staffDiscount = JSON.parse(staffDiscount);
-            }
-        }
+        // COCO-CUSTOMIZE convert string to json
+        let staffDiscount = StaffDiscountService.convertStaffDiscountToJson(order);
 
         return (
             <div className="wrapper-order-right">

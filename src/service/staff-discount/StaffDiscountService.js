@@ -390,6 +390,22 @@ export class StaffDiscountService extends CoreService {
 
         return new_price;
     }
+
+    /**
+     * convert string to json
+     *
+     * @param order
+     * @returns {*}
+     */
+    convertStaffDiscountToJson(order) {
+        let staffDiscount = (order && (order.staff_discount !== undefined)) ? order.staff_discount : '';
+        if (staffDiscount !== '' && typeof staffDiscount === 'string') {
+            while(typeof staffDiscount === 'string'){
+                staffDiscount = JSON.parse(staffDiscount);
+            }
+        }
+        return staffDiscount
+    }
 }
 
 /**
